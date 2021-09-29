@@ -8,18 +8,28 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button b = (Button)findViewById(R.id.button1);
 
+        Button b = (Button)findViewById(R.id.button);
+        b.setOnClickListener
+        (new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    Toast.makeText(getApplicationContext(),"Click",Toast.LENGTH_SHORT).show();
+                    TextView t = (TextView) findViewById(R.id.textView);
+                    t.setText("Cliked");
+                }
+            }
+        );
     }
-}
-
-public void inClikedButton(View v) {
-    Toast.makeText(context: this,)
 }

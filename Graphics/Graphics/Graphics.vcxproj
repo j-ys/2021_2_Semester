@@ -143,7 +143,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="fly.cpp" />
+    <ClCompile Include="landscape.cpp" />
     <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cockpit.h" />
+    <ClInclude Include="geometry.h" />
+    <ClInclude Include="landscape.h" />
+    <ClInclude Include="ship.h" />
+    <ClInclude Include="TriangleDraw.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

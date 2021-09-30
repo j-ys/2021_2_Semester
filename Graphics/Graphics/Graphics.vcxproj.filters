@@ -21,5 +21,28 @@
     <ClCompile Include="Main.cpp">
       <Filter>Main</Filter>
     </ClCompile>
+    <ClCompile Include="landscape.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="fly.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="geometry.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="ship.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="landscape.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="cockpit.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleDraw.h">
+      <Filter>header</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

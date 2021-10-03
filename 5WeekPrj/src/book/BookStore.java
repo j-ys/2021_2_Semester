@@ -33,9 +33,6 @@ public class BookStore {
 			case 2:
 				item = new EBook();
 				break;
-			case 3:
-				item = new AppendixBook();
-				break;
 			case 4:
 				item = new Pen();
 				break;

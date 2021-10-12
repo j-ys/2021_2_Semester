@@ -8,11 +8,14 @@ public class User implements Manageable {
 	String userId;
 	String pwd;
 	int point;
+	int rank;
 	ArrayList<Order> myOrderList = new ArrayList<>();
+	
 	@Override
 	public void read(Scanner scan) {
 		userId = scan.next();
 		pwd = scan.next();
+		rank = scan.nextInt();
 		point = scan.nextInt();
 	}
 	/*
@@ -22,7 +25,7 @@ public class User implements Manageable {
 	 */
 	@Override
 	public void print() {
-		System.out.printf("[%s] (%d점)\n", userId, point);
+		System.out.printf("[%s]	[등급:%s](%d점)\n", userId, rank, point);
 		for (Order od: myOrderList)
 			od.print(false);  // 간단 print
 	}

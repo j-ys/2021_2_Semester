@@ -22,6 +22,7 @@ public class Order implements Manageable {
 	public void print() {
 		print(true);
 	}
+	
 	void print(boolean bDetail) {
 		System.out.printf("[주문아이디:%2d] %s 사용자: %s ", id, date, user.userId);
 		System.out.printf(" - 주문금액:%5d (포인트: %2d점)\n", total, point);
@@ -32,17 +33,17 @@ public class Order implements Manageable {
 			orderedItemList.get(i).print();
 		}
 	}
+	
 	@Override
 	public void read(Scanner scan2) {
-		// TODO Auto-generated method stub
 		id = scan2.nextInt();
 		String userId = scan2.next();
-		user = Store.findUser(userId);
+		user = (User)Store.userMGR.find(userId);
 		date = scan2.next();
 		String itemId = scan2.next();
 		Item item = null;
 		while (!itemId.contentEquals("0")) {
-			item = Store.findItem(itemId);
+			item = (Item)Store.itemMGR.find(itemId);
 			if (item == null) {
 				System.out.printf("ItemId Error: %s", itemId);
 				continue;
@@ -55,6 +56,7 @@ public class Order implements Manageable {
 		point = total / 1000;
 		user.addOrder(this);
 	}
+	
 	void calcTotal() {
 		for (int i = 0; i < orderedItemList.size(); i++) {
 			total += orderedItemList.get(i).getSubtotal(orderedItemCount.get(i));

@@ -6,3 +6,4 @@
 - 메소드의 이름은 소문자로 시작함<br>
 - 모든 메소드와 필드에 접근 지정자를 명시할 것<br>
 - 굳이 외부에 보여주어야 할 이유가 있는 필드가 아니라면 private로 선언할 것<br>
+- 명명법은 카멜 스타일 ex) myNameIsLee, searchItemFromList

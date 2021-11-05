@@ -3,14 +3,14 @@ package Service;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Patient.Patient;
+import Items.Item;
 
 public class MenuManager {
-	public MenuManager(ArrayList<Patient> patientList,Scanner scan) {
-		this.patientList = patientList;
+	public MenuManager(ArrayList<Item> itemList,Scanner scan) {
+		this.itemList = itemList;
 		this.scan = scan;
 	}
-	private ArrayList<Patient> patientList;
+	private ArrayList<Item> itemList;
 	private Scanner scan;
 	
 	//menu system
@@ -77,7 +77,7 @@ public class MenuManager {
 			String id = scan.next(); //GUI
 			String pwd = scan.next(); //GUI
 			
-			for(Patient patient : patientList) {
+			for(Item item : itemList) {
 				//if (id.match){ 
 				//	if(pwd.match){
 				//		print login ok

@@ -5,24 +5,25 @@ import java.util.Scanner;
 import java.io.File;
 
 import ProcessManagement.Managers;
-import Patient.Patient;
+import Items.Item;
 
 public class ServiceManager {
-	private ArrayList<Patient> patientList= new ArrayList<Patient>();
+	private ArrayList<Item> itemList= new ArrayList<Item>();
 	private Scanner scan = new Scanner(System.in);
 	private MenuManager menuManger;
 
 	public void init() {
 		readUsers();
-		menuManger = new MenuManager(patientList, scan);
+		menuManger = new MenuManager(itemList, scan);
 	}
 	
 	private void readUsers() {
 		Scanner file = Managers.fileManager.openFile("Users.txt");
 		while(true){
 			//******Please Implements******
-			Patient p = new Patient();
-			patientList.add(p);
+			//switch - case
+			//Item i = new Item();
+			//itemList.add(i);
 			//*****************************
 		}
 	}

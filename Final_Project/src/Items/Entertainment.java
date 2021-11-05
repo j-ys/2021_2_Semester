@@ -1,6 +1,6 @@
 package Items;
 
-public class Entertainment implements Item{
+public class Entertainment extends Item{
 	@Override
 	public void insert() {
 		
@@ -11,6 +11,14 @@ public class Entertainment implements Item{
 	}
 	@Override
 	public void delete() {
+		
+	}
+	@Override
+	public boolean match(String kwd) {
+		
+	}
+	@Override
+	public void print() {
 		
 	}
 }

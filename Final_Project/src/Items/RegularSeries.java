@@ -1,6 +1,6 @@
 package Items;
 
-public class RegularSeries implements Item{
+public class RegularSeries extends Item{
 	@Override
 	public void insert() {
 		
@@ -11,6 +11,14 @@ public class RegularSeries implements Item{
 	}
 	@Override
 	public void delete() {
+		
+	}
+	@Override
+	public boolean match(String kwd) {
+		
+	}
+	@Override
+	public void print() {
 		
 	}
 }

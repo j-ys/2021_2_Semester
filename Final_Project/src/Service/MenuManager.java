@@ -101,10 +101,13 @@ public class MenuManager {
 				
 				switch(input) {
 				case 1:
+					insertData();
 					break;
 				case 2:
+					deleteData();
 					break;
 				case 3:
+					modifyData();
 					break;
 				case 4:
 					done = true;
@@ -161,53 +164,27 @@ public class MenuManager {
 			
 			String kwd = null;
 			while (true) {
-				System.out.print("Data Modify | find item (input end to exit): ");
+				System.out.print("Data Modify | find item (input [end] to exit): ");
 				kwd = scan.next();
 				if (kwd.equals("end"))
 					break;
 				for (Item item : itemList) {
-					if (item.matches(kwd)) {
+					if (item.match(kwd)) {
 						item.print(); //add Matches, print method
 						findItems.add(item);
 					}
 				}
-				int input = 0;
-				System.out.printf("[%d]items matched, Select one :", findItems.size());
-				input = scan.nextInt();
-				Item myitem = findItems.indexOf(input);
-				
-				
-			}
-			
-			
-			
-			
-			while(!done) {
-				System.out.print("Data Modify | find item : ");
-				input = scan.nextInt();
-				switch(input) {
-				case 1:
-					item = new RegularSeries();
-					break;
-				case 2:
-					item = new OriginalSeries();
-					break;
-				case 3:
-					item = new Movie();
-					break;
-				case 4:
-					item = new Animation();
-					break;
-				case 5:
-					item = new Entertainment();
-					break;
-				case 6:
-					done = true;
-					break;
-				default:
-					break;
+				if(findItems.isEmpty()) {
+					System.out.println("Can't find item");	
+					continue;
 				}
+				else {
+					int input = 0;
+					System.out.printf("[%d]items matched, Select one :", findItems.size());
+					input = scan.nextInt();
+					Item myitem = findItems.get(input);	
+					myitem.modify();
+				}	
 			}
-			
 		}
 }

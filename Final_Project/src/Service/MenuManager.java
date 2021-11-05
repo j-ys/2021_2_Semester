@@ -3,7 +3,12 @@ package Service;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Items.Animation;
+import Items.Entertainment;
 import Items.Item;
+import Items.Movie;
+import Items.OriginalSeries;
+import Items.RegularSeries;
 
 public class MenuManager {
 	public MenuManager(ArrayList<Item> itemList,Scanner scan) {
@@ -50,49 +55,159 @@ public class MenuManager {
 			}
 		}
 		
+		//User Menus
 		private void startMenu()
 		{
 			System.out.println("시작하기");
-			boolean isCliked = false;
-			while(isCliked) {
-				//start 누르는 GUI 구현
-				//start 눌리면 isClicked true로 바꾸기
+			boolean isClicked = false;
+			while(true) {
+				//시작하기가 눌리면 다음 인터페이스로 이동
+				if(isClicked) {
+					menuState =  MenuState.MAIN;
+				}
 			}
 		}
 		
 		private void mainMenu(){
 			boolean done = false;
 			while(done ) {				
-				// GUI버튼 보여주기
-				System.out.println("로그인");			
-				System.out.println("회원가입");
-				System.out.println("뒤로가기");
-				//if(로그인) menuState= LOGIN; done = false;
-				//if(회원가입) menuState= SIGN_UP; done = false;
-				//if(뒤로가기) menuState= MAIN; done = false;
+				// GUI버튼 보여주기		
 			}
 		}
 		
 		private void loginMenu() {
+			//로그인은 만들지 말지 아직 미결정
 			String id = scan.next(); //GUI
 			String pwd = scan.next(); //GUI
 			
 			for(Item item : itemList) {
-				//if (id.match){ 
-				//	if(pwd.match){
-				//		print login ok
-				//		이제 환자정보 입력 flow로 이동
-				//	}
-				//}
+
 			}
 		}
 		
 		private void signUpMenu() {
+			//회원가입은 만들지 말지 아직 미결정
+		}
+		
+		
+		//Admin Menus
+		private void adminMenu() { //삽입 삭제 수정
+			boolean done = false;
+			int input = 0;
+			while(!done) {
+				System.out.println("****Admin mode on****");
+				System.out.print("Data handling|(1)Insert (2)Delete (3)Modify (4)exit:");
+				input = scan.nextInt();
+				
+				switch(input) {
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					done = true;
+					break;
+				default:
+					break;
+				}
+			}
+		}
+		
+		private void insertData() {
+			boolean done = false;
+			System.out.println("****Insert mode on****");
+			int input = 0;
+			Item item = null;
+			while(!done) {
+				System.out.print("Data Insert|(1)Regular (2)Original (3)Movie (4)Animation (5)Entertainment (6)exit : ");
+				input = scan.nextInt();
+				switch(input) {
+				case 1:
+					item = new RegularSeries();
+					break;
+				case 2:
+					item = new OriginalSeries();
+					break;
+				case 3:
+					item = new Movie();
+					break;
+				case 4:
+					item = new Animation();
+					break;
+				case 5:
+					item = new Entertainment();
+					break;
+				case 6:
+					done = true;
+					break;
+				default:
+					break;
+				}
+				item.insert();
+				itemList.add(item);
+			}
+		}	
+		
+		private void deleteData() {
 			
 		}
 		
-		private void adminMenu() {
+		private void modifyData() {
+			boolean done = false;
+			System.out.println("****Modify mode on****");
+			ArrayList<Item> findItems = new ArrayList<Item>();
+			
+			String kwd = null;
+			while (true) {
+				System.out.print("Data Modify | find item (input end to exit): ");
+				kwd = scan.next();
+				if (kwd.equals("end"))
+					break;
+				for (Item item : itemList) {
+					if (item.matches(kwd)) {
+						item.print(); //add Matches, print method
+						findItems.add(item);
+					}
+				}
+				int input = 0;
+				System.out.printf("[%d]items matched, Select one :", findItems.size());
+				input = scan.nextInt();
+				Item myitem = findItems.indexOf(input);
+				
+				
+			}
+			
+			
+			
+			
+			while(!done) {
+				System.out.print("Data Modify | find item : ");
+				input = scan.nextInt();
+				switch(input) {
+				case 1:
+					item = new RegularSeries();
+					break;
+				case 2:
+					item = new OriginalSeries();
+					break;
+				case 3:
+					item = new Movie();
+					break;
+				case 4:
+					item = new Animation();
+					break;
+				case 5:
+					item = new Entertainment();
+					break;
+				case 6:
+					done = true;
+					break;
+				default:
+					break;
+				}
+			}
 			
 		}
-		
 }

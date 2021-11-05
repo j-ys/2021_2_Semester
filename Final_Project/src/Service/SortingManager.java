@@ -21,7 +21,7 @@ public class SortingManager <T extends Item>{
 			Collections.sort(list, new Comparator<T>() {
 				@Override
 				public int compare(T item1, T item2) {
-					return item1.name.compareTo(item2.name);
+					return item1.getName().compareTo(item2.getName());
 				}
 			});
 			break;

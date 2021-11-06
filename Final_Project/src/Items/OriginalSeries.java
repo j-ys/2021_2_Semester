@@ -1,6 +1,8 @@
 package Items;
 
 public class OriginalSeries extends Item{
+	String servicePlatform;
+	
 	@Override
 	public void insert() {
 		

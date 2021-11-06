@@ -25,6 +25,7 @@ public class ServiceManager {
 			//Item i = new Item();
 			//itemList.add(i);
 			//*****************************
+			
 		}
 	}
 	

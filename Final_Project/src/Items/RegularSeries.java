@@ -1,6 +1,8 @@
 package Items;
 
 public class RegularSeries extends Item{
+	String serviceChannel;
+	
 	@Override
 	public void insert() {
 		

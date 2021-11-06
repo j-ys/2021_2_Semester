@@ -1,10 +1,7 @@
 package ProcessManagement;
 
 enum ProcessState{
-	None,
-	Initial,
-	Run,
-	End
+	None, Initial, Run, End
 }
 
 public class ProcessFlowManager {

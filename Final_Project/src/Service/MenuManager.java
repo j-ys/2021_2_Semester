@@ -20,13 +20,7 @@ public class MenuManager {
 	
 	//menu system
 		private enum MenuState{
-			NONE,
-			START,
-			MAIN,
-			LOGIN,
-			SIGN_UP,
-			ADMIN,
-			BOOKING
+			NONE, START, MAIN, LOGIN, SIGN_UP, ADMIN, BOOKING
 		}
 		private MenuState menuState = MenuState.START;
 		public void menuRun(){

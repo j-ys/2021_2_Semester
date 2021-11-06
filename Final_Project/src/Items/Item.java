@@ -4,12 +4,16 @@ public abstract class Item {//Our Manageable
 	public abstract void insert();
 	public abstract void modify();
 	public abstract void delete();
-	public abstract boolean match(String kwd);
 	public abstract void print();
+	public abstract boolean match(String kwd);
 	
-	protected String name;
-	protected int time;
-	protected int grade;
+	public enum Category {
+		THRILLER, ACTION, ROMANCE, SF, COMEDY, HORROR, FANTASY, DOCUMENTARY
+	}
+	public Category stringToCategory(String kwd) {
+		return Category.valueOf(kwd);
+	}
+	
 	public String getName() {
 		return name;	
 	}
@@ -20,5 +24,8 @@ public abstract class Item {//Our Manageable
 		return grade;	
 	}
 	
-	
+	protected String name;
+	protected int time;
+	protected int grade;
+	protected Category category; 
 }

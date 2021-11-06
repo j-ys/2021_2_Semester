@@ -1,6 +1,7 @@
 package Items;
 
 public class Movie extends Item{
+	String movieDirector;
 	
 	@Override
 	public void insert() {

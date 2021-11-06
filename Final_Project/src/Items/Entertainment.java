@@ -1,6 +1,8 @@
 package Items;
 
 public class Entertainment extends Item{
+	
+	
 	@Override
 	public void insert() {
 		

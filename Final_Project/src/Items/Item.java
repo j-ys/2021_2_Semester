@@ -23,9 +23,14 @@ public abstract class Item {//Our Manageable
 	public int getGrade() {
 		return grade;	
 	}
+	 
+	public int getRating(){ 
+		return rating;
+	}
 	
 	protected String name;
 	protected int time;
 	protected int grade;
+	protected int rating;//관람등급
 	protected Category category; 
 }

@@ -1,7 +1,7 @@
 package Items;
 
 public class Animation extends Item{
-	
+	String characteristic;
 	
 	@Override
 	public void insert() {

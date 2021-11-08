@@ -1,8 +1,9 @@
 package Items;
 
 public class Entertainment extends Item{
-	
-	
+	 String channel;
+	 String castmates;
+	 
 	@Override
 	public void insert() {
 		

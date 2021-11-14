@@ -28,6 +28,7 @@ public class OriginalSeries extends Item{
 	@Override
 	public boolean match(String kwd) {
 		if(name.contains(kwd)) {
+			System.out.printf("i founded [%s] ", kwd);
 			return true;
 		}
 		if(servicePlatform.contains(kwd)) {
@@ -40,8 +41,9 @@ public class OriginalSeries extends Item{
 			return true;
 		}
 		for(String actor : mainActors) {
-			actor.contains(kwd);
-			return true;
+			if(actor.contains(kwd)) {
+				return true;
+			}
 		}
 		return false;
 	}

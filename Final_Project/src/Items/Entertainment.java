@@ -40,8 +40,9 @@ public class Entertainment extends Item{
 			return true;
 		}
 		for(String cast : castmates) {
-			cast.contains(kwd);
-			return true;
+			if(cast.contains(kwd)) {
+				return true;
+			}
 		}
 		return false;
 	}

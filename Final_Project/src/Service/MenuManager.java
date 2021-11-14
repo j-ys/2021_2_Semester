@@ -175,7 +175,8 @@ public class MenuManager {
 					int input = 0;
 					System.out.printf("[%d]items matched, Select one :", findItems.size());
 					input = scan.nextInt();
-					itemList.remove(findItems.get(input));
+					itemList.remove(findItems.get(input-1));
+					System.out.println("Delete done");
 				}	
 			}
 		}
@@ -186,6 +187,7 @@ public class MenuManager {
 			ArrayList<Item> findItems = new ArrayList<Item>();
 			
 			String kwd = null;
+			int cnt=1;
 			while (true) {
 				System.out.print("Data Modify | find item (input [end] to exit): ");
 				kwd = scan.next();
@@ -193,6 +195,7 @@ public class MenuManager {
 					break;
 				for (Item item : itemList) {
 					if (item.match(kwd)) {
+						System.out.printf("(%d) : ",cnt++);
 						item.print(); //add Matches, print method
 						findItems.add(item);
 					}
@@ -205,8 +208,9 @@ public class MenuManager {
 					int input = 0;
 					System.out.printf("[%d]items matched, Select one :", findItems.size());
 					input = scan.nextInt();
-					Item myitem = findItems.get(input);	
+					Item myitem = findItems.get(input-1);	
 					myitem.modify();
+					System.out.println("Modify done");
 				}	
 			}
 		}

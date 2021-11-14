@@ -40,8 +40,9 @@ public class Movie extends Item{
 			return true;
 		}
 		for(String actor : mainActors) {
-			actor.contains(kwd);
-			return true;
+			if(actor.contains(kwd)) {
+				return true;
+			}
 		}
 		return false;
 	}

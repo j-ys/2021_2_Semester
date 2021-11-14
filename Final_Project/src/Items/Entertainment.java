@@ -57,5 +57,6 @@ public class Entertainment extends Item{
 				System.out.printf("%s,",castmates.get(i));	
 			}
 		}	
+		System.out.println();
 	}
 }

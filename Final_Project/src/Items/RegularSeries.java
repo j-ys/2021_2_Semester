@@ -57,5 +57,6 @@ public class RegularSeries extends Item{
 				System.out.printf("%s,",mainActors.get(i));	
 			}
 		}	
+		System.out.println();
 	}
 }

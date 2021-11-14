@@ -57,6 +57,7 @@ public class Movie extends Item{
 			else {
 				System.out.printf("%s,",mainActors.get(i));	
 			}
-		}			
+		}	
+		System.out.println();
 	}
 }

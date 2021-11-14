@@ -11,7 +11,7 @@ public abstract class Item {//Our Manageable
 	}
 	
 	public void print() {
-		System.out.printf("%s | %d | %f | %d |", name,time,grade,rating);
+		System.out.printf("%-20s	| %d | %.1f | %d | ", name,time,grade,rating);
 		for(int i=0;i<category.size();i++){
 			if(i==(category.size()-1)) {
 				System.out.printf("%s",category.get(i).name());	

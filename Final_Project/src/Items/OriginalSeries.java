@@ -56,6 +56,7 @@ public class OriginalSeries extends Item{
 			else {
 				System.out.printf("%s,",mainActors.get(i));	
 			}
-		}	
+		}
+		System.out.println();
 	}
 }

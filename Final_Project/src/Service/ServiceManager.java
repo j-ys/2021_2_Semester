@@ -22,7 +22,7 @@ public class ServiceManager {
 		Scanner file = Managers.fileManager.openFile("datas.txt");
 		String nowData;
 		Item nowItem;
-		while(true){
+		while(file.hasNext()){
 			nowData = file.next();
 			nowItem = ItemFactory.createItem(nowData);
 			nowItem.read(file);

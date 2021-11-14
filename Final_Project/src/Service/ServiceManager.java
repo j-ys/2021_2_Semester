@@ -26,6 +26,7 @@ public class ServiceManager {
 			nowData = file.next();
 			nowItem = ItemFactory.createItem(nowData);
 			nowItem.read(file);
+			nowItem.print();
 			itemList.add(nowItem);
 		}
 	}

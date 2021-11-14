@@ -5,9 +5,11 @@ import java.util.Scanner;
 
 public abstract class Item {//Our Manageable
 	public abstract void read(Scanner scan);
+	
 	public void modify() {
 		
 	}
+	
 	public void print() {
 		System.out.printf("%s | %d | %f | %d |", name,time,grade,rating);
 		for(int i=0;i<category.size();i++){
@@ -23,9 +25,10 @@ public abstract class Item {//Our Manageable
 	public abstract boolean match(String kwd);
 	
 	public enum Category {
-		THRILLER, ACTION, ROMANCE, SF, COMEDY, HORROR, FANTASY, DOCUMENTARY, LIFESTYLE,VARIETY_SHOW
+		THRILLER, ACTION, ROMANCE, SF, COMEDY, HORROR, FANTASY, DOCUMENTARY, LIFESTYLE,VARIETY_SHOW, TRAVEL
 	}
 	public Category stringToCategory(String kwd) {
+		
 		return Category.valueOf(kwd);
 	}
 

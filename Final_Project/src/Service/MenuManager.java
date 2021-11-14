@@ -141,7 +141,7 @@ public class MenuManager {
 				default:
 					break;
 				}
-				item.read(null);
+				item.setData(scan);
 				itemList.add(item);
 			}
 		}	

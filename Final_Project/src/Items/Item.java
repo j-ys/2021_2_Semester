@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public abstract class Item {//Our Manageable
 	public abstract void read(Scanner scan);
+	public abstract void setData(Scanner scan);
+	public abstract boolean match(String kwd);
 	
 	public void modify() {
 		
@@ -22,7 +24,6 @@ public abstract class Item {//Our Manageable
 		}
 		System.out.printf("| %s |",summary);	
 	}
-	public abstract boolean match(String kwd);
 	
 	public enum Category {
 		THRILLER, ACTION, ROMANCE, SF, COMEDY, HORROR, FANTASY, DOCUMENTARY, LIFESTYLE,VARIETY_SHOW, TRAVEL

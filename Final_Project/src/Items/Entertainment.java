@@ -47,6 +47,15 @@ public class Entertainment extends Item{
 	}
 	@Override
 	public void print() {
-		
+		super.print();
+		System.out.printf(" %s |",channel);
+		for(int i=0;i<castmates.size();i++){
+			if(i==(castmates.size()-1)) {
+				System.out.printf("%s",castmates.get(i));	
+			}
+			else {
+				System.out.printf("%s,",castmates.get(i));	
+			}
+		}	
 	}
 }

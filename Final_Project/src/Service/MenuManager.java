@@ -22,7 +22,7 @@ public class MenuManager {
 		private enum MenuState{
 			NONE, START, MAIN, LOGIN, SIGN_UP, ADMIN
 		}
-		private MenuState menuState = MenuState.START;
+		private MenuState menuState = MenuState.ADMIN;//plz modify to NONE
 		public void menuRun(){
 			boolean processRunning = true;
 			//여기서 GUI Open
@@ -87,7 +87,7 @@ public class MenuManager {
 			int input = 0;
 			while(!done) {
 				System.out.println("****Admin mode on****");
-				System.out.print("Data handling|(1)Insert (2)Delete (3)Modify (4)exit:");
+				System.out.print("Data handling|(1)Insert (2)Delete (3)Modify (4)Print (5)exit :");
 				input = scan.nextInt();
 				
 				switch(input) {
@@ -101,6 +101,8 @@ public class MenuManager {
 					modifyData();
 					break;
 				case 4:
+					printData();
+				case 5:
 					done = true;
 					break;
 				default:
@@ -143,7 +145,11 @@ public class MenuManager {
 				itemList.add(item);
 			}
 		}	
-		
+		private void printData() {
+			for(Item item : itemList) {
+				item.print();
+			}
+		}
 		private void deleteData() {
 			boolean done = false;
 			System.out.println("****Delete mode on****");

@@ -57,27 +57,23 @@ public class SortingManager <T extends Item>{
 	public void categorySort() {
 		boolean done = false;
 		int input = 0;
-		while(!done) {
-			System.out.println("****Category sort Menu****");
-			Item.Category selectedCategory;
-			//GUI option select
-			//case - switch : which button clicked? => selectedCategory value 
-			
-			switch(input) {
-			case 1:
-				
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			case 4:
-				done = true;
-				break;
-			default:
-				break;
+		System.out.println("****Category sort Menu****");
+		Item.Category selectedCategory = null;
+		// GUI option select
+		// case - switch : which button clicked? => selectedCategory value
+
+		Collections.sort(list, new Comparator<T>() {
+			@Override
+			public int compare(T item1, T item2) {
+				if (item1.hasCategory(selectedCategory) == item2.hasCategory(selectedCategory))
+					return 0;
+				else if (item1.hasCategory(selectedCategory) && !item2.hasCategory(selectedCategory))
+					return 1;
+				else
+					return -1;
 			}
-		}	
+		});
+	
 	}	
 	//예시 버튼 이벤트 
 	//@Override

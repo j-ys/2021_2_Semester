@@ -2,20 +2,20 @@ package Items;
 
 public class ItemFactory {
 	private enum ItemType{
-		ANIMATION, ENTERTAINMENT, MOVIE, ORIGINAL_SERIES, REGULAR_SERIES
+		Animation, Entertainment, Movie, OriginalSeries, RegularSeries
 	}
 	
 	public static Item createItem(String type) {
 		switch (ItemType.valueOf(type)) {
-		case ANIMATION:
+		case Animation:
 			return new Animation();
-		case ENTERTAINMENT:
+		case Entertainment:
 			return new Entertainment();
-		case MOVIE:
+		case Movie:
 			return new Movie();
-		case ORIGINAL_SERIES:
+		case OriginalSeries:
 			return new OriginalSeries();
-		case REGULAR_SERIES:
+		case RegularSeries:
 			return new RegularSeries();
 		default:
 			break;

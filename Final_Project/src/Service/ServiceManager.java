@@ -14,18 +14,18 @@ public class ServiceManager {
 	private MenuManager menuManger;
 
 	public void init() {
-		readUsers();
+		readDatas();
 		menuManger = new MenuManager(itemList, scan);
 	}
 	
-	private void readUsers() {
-		Scanner file = Managers.fileManager.openFile("Users.txt");
+	private void readDatas() {
+		Scanner file = Managers.fileManager.openFile("datas.txt");
 		String nowData;
 		Item nowItem;
 		while(true){
 			nowData = file.next();
 			nowItem = ItemFactory.createItem(nowData);
-			nowItem.read(null);
+			nowItem.read(file);
 			itemList.add(nowItem);
 		}
 	}

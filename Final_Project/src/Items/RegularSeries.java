@@ -47,6 +47,15 @@ public class RegularSeries extends Item{
 	}
 	@Override
 	public void print() {
-		
+		super.print();
+		System.out.printf(" %s |",serviceChannel);
+		for(int i=0;i<mainActors.size();i++){
+			if(i==(mainActors.size()-1)) {
+				System.out.printf("%s",mainActors.get(i));	
+			}
+			else {
+				System.out.printf("%s,",mainActors.get(i));	
+			}
+		}	
 	}
 }

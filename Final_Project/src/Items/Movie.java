@@ -48,6 +48,15 @@ public class Movie extends Item{
 	
 	@Override
 	public void print() {
-		
+		super.print();
+		System.out.printf(" %s |",movieDirector);
+		for(int i=0;i<mainActors.size();i++){
+			if(i==(mainActors.size()-1)) {
+				System.out.printf("%s",mainActors.get(i));	
+			}
+			else {
+				System.out.printf("%s,",mainActors.get(i));	
+			}
+		}			
 	}
 }

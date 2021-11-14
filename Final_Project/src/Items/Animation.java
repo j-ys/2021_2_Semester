@@ -33,6 +33,7 @@ public class Animation extends Item{
 	}
 	@Override
 	public void print() {
-		
+		super.print();
+		System.out.println();
 	}
 }

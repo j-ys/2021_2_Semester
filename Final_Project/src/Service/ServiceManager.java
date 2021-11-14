@@ -6,6 +6,7 @@ import java.io.File;
 
 import ProcessManagement.Managers;
 import Items.Item;
+import Items.ItemFactory;
 
 public class ServiceManager {
 	private ArrayList<Item> itemList= new ArrayList<Item>();
@@ -19,13 +20,13 @@ public class ServiceManager {
 	
 	private void readUsers() {
 		Scanner file = Managers.fileManager.openFile("Users.txt");
+		String nowData;
+		Item nowItem;
 		while(true){
-			//******Please Implements******
-			//switch - case
-			//Item i = new Item();
-			//itemList.add(i);
-			//*****************************
-			
+			nowData = file.next();
+			nowItem = ItemFactory.createItem(nowData);
+			nowItem.read(null);
+			itemList.add(nowItem);
 		}
 	}
 	

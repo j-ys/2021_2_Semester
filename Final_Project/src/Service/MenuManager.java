@@ -20,7 +20,7 @@ public class MenuManager {
 	
 	//menu system
 		private enum MenuState{
-			NONE, START, MAIN, LOGIN, SIGN_UP, ADMIN, BOOKING
+			NONE, START, MAIN, LOGIN, SIGN_UP, ADMIN
 		}
 		private MenuState menuState = MenuState.START;
 		public void menuRun(){
@@ -43,8 +43,6 @@ public class MenuManager {
 				case ADMIN:
 					adminMenu();
 					break;
-				case BOOKING:
-					break;		
 				}
 			}
 		}
@@ -70,7 +68,6 @@ public class MenuManager {
 		}
 		
 		private void loginMenu() {
-			//로그인은 만들지 말지 아직 미결정
 			String id = scan.next(); //GUI
 			String pwd = scan.next(); //GUI
 			
@@ -80,7 +77,7 @@ public class MenuManager {
 		}
 		
 		private void signUpMenu() {
-			//회원가입은 만들지 말지 아직 미결정
+			
 		}
 		
 		
@@ -142,13 +139,39 @@ public class MenuManager {
 				default:
 					break;
 				}
-				item.insert();
+				item.read(null);
 				itemList.add(item);
 			}
 		}	
 		
 		private void deleteData() {
+			boolean done = false;
+			System.out.println("****Delete mode on****");
+			ArrayList<Item> findItems = new ArrayList<Item>();
 			
+			String kwd = null;
+			while (true) {
+				System.out.print("Data Delete | find item (input [end] to exit): ");
+				kwd = scan.next();
+				if (kwd.equals("end"))
+					break;
+				for (Item item : itemList) {
+					if (item.match(kwd)) {
+						item.print();
+						findItems.add(item);
+					}
+				}
+				if(findItems.isEmpty()) {
+					System.out.println("Can't find item");	
+					continue;
+				}
+				else {
+					int input = 0;
+					System.out.printf("[%d]items matched, Select one :", findItems.size());
+					input = scan.nextInt();
+					itemList.remove(findItems.get(input));
+				}	
+			}
 		}
 		
 		private void modifyData() {

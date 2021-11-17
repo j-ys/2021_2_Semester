@@ -28,7 +28,6 @@ public class OriginalSeries extends Item{
 	@Override
 	public boolean match(String kwd) {
 		if(name.contains(kwd)) {
-			System.out.printf("i founded [%s] ", kwd);
 			return true;
 		}
 		if(servicePlatform.contains(kwd)) {

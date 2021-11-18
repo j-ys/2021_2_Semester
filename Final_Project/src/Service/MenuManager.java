@@ -135,11 +135,9 @@ public class MenuManager {
 				case 5:
 					item = new Entertainment();
 					break;
-				case 6:
-					done = true;
-					break;
 				default:
-					break;
+					done = true;
+					continue;
 				}
 				item.setData(scan);
 				itemList.add(item);
@@ -209,7 +207,7 @@ public class MenuManager {
 					System.out.printf("[%d]items matched, Select one :", findItems.size());
 					input = scan.nextInt();
 					Item myitem = findItems.get(input-1);	
-					myitem.modify();
+					myitem.modify(scan);
 					System.out.println("Modify done");
 				}	
 			}

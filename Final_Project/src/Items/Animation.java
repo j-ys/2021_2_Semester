@@ -36,4 +36,17 @@ public class Animation extends Item{
 		super.print();
 		System.out.println();
 	}
+	@Override
+	public void setData(Scanner scan) {
+		System.out.println("Enter");
+		name = scan.next();
+		String []categorys = scan.next().split(",");
+		for(String str : categorys){
+			category.add(stringToCategory(str));
+		}
+		time = scan.nextInt();
+		grade = scan.nextFloat();
+		rating = scan.nextInt();
+		summary = scan.nextLine();
+	}
 }

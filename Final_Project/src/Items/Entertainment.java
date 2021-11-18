@@ -60,4 +60,23 @@ public class Entertainment extends Item{
 		}	
 		System.out.println();
 	}
+	
+	@Override
+	public void setData(Scanner scan) {
+		System.out.println("Enter");
+		name = scan.next();
+		String []categorys = scan.next().split(",");
+		for(String str : categorys){
+			category.add(stringToCategory(str));
+		}
+		time = scan.nextInt();
+		grade = scan.nextFloat();
+		rating = scan.nextInt();
+		channel = scan.next();
+		String []castmate = scan.next().split(",");
+		for(String str : castmate){
+			castmates.add(str);  
+		}
+		summary = scan.nextLine();
+	}
 }

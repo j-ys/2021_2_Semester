@@ -8,8 +8,45 @@ public abstract class Item {//Our Manageable
 	public abstract void setData(Scanner scan);
 	public abstract boolean match(String kwd);
 	
-	public void modify() {
+	public void modify(Scanner scan) {
+		System.out.println("Enter what you want to modify.");
+		System.out.printf("Name: %s->", name);
+		scan.nextLine();
+		String temp = scan.nextLine();
+		if(temp.length()>0)
+			name = temp;
 		
+		System.out.printf("Time: %d->", time);
+		temp = scan.next();
+		if(temp.length()>0)
+			time = Integer.parseInt(temp);
+		
+		while(true) {
+			System.out.printf("Grade: %.1f->", grade);
+			temp = scan.next();
+			if(temp.length()>0) {
+			
+				if(Float.parseFloat(temp)>5.0){
+				System.out.println("Enter again.");
+					continue;
+				}
+				else {
+					grade = Float.parseFloat(temp);
+						break;
+						}
+				}
+		}
+		
+		System.out.printf("Rating: %d->", rating);
+		temp = scan.next();
+		if(temp.length()>0)
+			rating = Integer.parseInt(temp);
+		
+		System.out.printf("Summary: %s->", summary);
+		scan.nextLine();
+		temp = scan.nextLine();
+		if(temp.length()>0)
+			summary = temp;
 	}
 	
 	public void print() {

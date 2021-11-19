@@ -9,6 +9,8 @@ import Items.Item;
 import Items.Movie;
 import Items.OriginalSeries;
 import Items.RegularSeries;
+import UserManagement.User;
+import UserManagement.UserManager;
 
 public class MenuManager {
 	public MenuManager(ArrayList<Item> itemList,Scanner scan) {
@@ -17,6 +19,7 @@ public class MenuManager {
 	}
 	private ArrayList<Item> itemList;
 	private Scanner scan;
+	private User nowUser = new User();
 	
 	//menu system
 		private enum MenuState{
@@ -68,12 +71,7 @@ public class MenuManager {
 		}
 		
 		private void loginMenu() {
-			String id = scan.next(); //GUI
-			String pwd = scan.next(); //GUI
-			
-			for(Item item : itemList) {
-
-			}
+			UserManager.
 		}
 		
 		private void signUpMenu() {

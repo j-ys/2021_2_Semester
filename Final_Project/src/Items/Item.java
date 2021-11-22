@@ -101,5 +101,8 @@ public abstract class Item {//Our Manageable
 		return rating;
 	}
 	
+	public String getImagePath() {
+		return imagePath;
+	}
 }
 

@@ -8,6 +8,14 @@ public abstract class Item {//Our Manageable
 	public abstract void setData(Scanner scan);
 	public abstract boolean match(String kwd);
 	
+	protected String name;
+	protected int time;
+	protected float grade;
+	protected int rating;//관람등급
+	protected ArrayList<Category> category = new ArrayList<Category>();
+	protected String imagePath;
+	protected String summary;
+	
 	public void modify(Scanner scan) {
 		System.out.println("Enter what you want to modify.");
 		System.out.printf("Name: %s->", name);
@@ -93,11 +101,5 @@ public abstract class Item {//Our Manageable
 		return rating;
 	}
 	
-	protected String name;
-	protected int time;
-	protected float grade;
-	protected int rating;//관람등급
-	protected ArrayList<Category> category = new ArrayList<Category>(); 
-	protected String summary;
 }
 

@@ -9,21 +9,27 @@ import Items.Item;
 import Items.Movie;
 import Items.OriginalSeries;
 import Items.RegularSeries;
+import ReviewManagement.Review;
 import UserManagement.User;
 import UserManagement.UserManager;
 
 public class MenuManager {
-	public MenuManager(ArrayList<Item> itemList,Scanner scan) {
+	public MenuManager(ArrayList<Item> itemList, ArrayList<User> userList, ArrayList<Review> reviewList, Scanner scan) {
 		this.itemList = itemList;
+		this.userList = userList;
+		this.reviewList = reviewList;
 		this.scan = scan;
 	}
 	private ArrayList<Item> itemList;
+	private ArrayList<User> userList;
+	private ArrayList<Review> reviewList;
 	private Scanner scan;
 	private User nowUser = new User();
+	private UserManager log = new UserManager(userList, scan);
 	
 	//menu system
 		private enum MenuState{
-			NONE, START, MAIN, LOGIN, SIGN_UP, ADMIN
+			NONE, START, MAIN, LOGIN, SIGN_UP, ADMIN, REVIEW
 		}
 		private MenuState menuState = MenuState.ADMIN;//plz modify to NONE
 		public void menuRun(){
@@ -70,12 +76,41 @@ public class MenuManager {
 			}
 		}
 		
+		private void reviewMenu()
+		{
+			String id = nowUser.userId;
+			id = "kkk";
+			int exist = 0;
+			String name = "오징어게임";
+			for (Review rev : reviewList) {
+				if (rev.match(id, name)) {
+					exist = 1;
+				}
+			}
+			if(exist == 1) {
+		    	System.out.println("이미 리뷰를 남기셨습니다.");
+			}
+			else if(exist == 0) {
+				System.out.print("평점: ");
+				float grade = scan.nextFloat();
+				System.out.print("간단한 리뷰를 써주세요.: ");
+				String review = scan.nextLine();
+				Review newReview = new Review();
+				newReview.userId = id;
+				newReview.name = name;
+				newReview.grade = grade;
+				newReview.content = review;
+		        reviewList.add(newReview);
+			}
+		}
+		
+		
 		private void loginMenu() {
-			UserManager.
+			nowUser = log.login();
 		}
 		
 		private void signUpMenu() {
-			
+			log.signUp();
 		}
 		
 		
@@ -141,11 +176,13 @@ public class MenuManager {
 				itemList.add(item);
 			}
 		}	
+		
 		private void printData() {
 			for(Item item : itemList) {
 				item.print();
 			}
 		}
+		
 		private void deleteData() {
 			boolean done = false;
 			System.out.println("****Delete mode on****");

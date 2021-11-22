@@ -5,17 +5,27 @@ import java.util.Scanner;
 import java.io.File;
 
 import ProcessManagement.Managers;
+import ReviewManagement.Review;
+import UserManagement.User;
 import Items.Item;
 import Items.ItemFactory;
 
 public class ServiceManager {
 	private ArrayList<Item> itemList= new ArrayList<Item>();
+	private ArrayList<User> userList= new ArrayList<User>();
+	private ArrayList<Review> reviewList= new ArrayList<Review>();
 	private Scanner scan = new Scanner(System.in);
 	private MenuManager menuManger;
 
 	public void init() {
 		readDatas();
-		menuManger = new MenuManager(itemList, scan);
+		readUsers();
+		readReviews();
+		menuManger = new MenuManager(itemList, userList, reviewList, scan);
+	}
+	
+	public void run() {
+		menuManger.menuRun();
 	}
 	
 	private void readDatas() {
@@ -31,10 +41,25 @@ public class ServiceManager {
 		}
 	}
 	
-	public void run() {
-		menuManger.menuRun();
+	public void readUsers() {
+		Scanner file = Managers.fileManager.openFile("users.txt");
+		User nowUser = new User();
+		while(file.hasNext()){
+			nowUser.read(file);
+			nowUser.print();
+			userList.add(nowUser);
+		}
 	}
 	
+	public void readReviews() {
+		Scanner file = Managers.fileManager.openFile("reviews.txt");
+		Review review = new Review();
+		while(file.hasNext()){
+			review.read(file);
+			review.print();
+			reviewList.add(review);
+		}
+	}
 }
 
 

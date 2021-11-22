@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 
 public class UserManager {
-	UserManager (Scanner scan){
+	public UserManager(ArrayList<User> userList, Scanner scan) {
+		this.userList = userList;
 		this.scan = scan;
 	}
-	private ArrayList<User> userList= new ArrayList<User>();
+	private ArrayList<User> userList;
 	private Scanner scan;
 	
 	public User login() {
@@ -59,15 +60,15 @@ public class UserManager {
 		String pw = scan.next();
 		User user = find(id);
 		User newUser = new User();
-		newUser.userId = id;
-		newUser.pw = pw;
 		if(user != null) {
-	    	System.out.println("동일한 아이디가 존재합니다.");
+	    	System.out.println("동일한 아이디가 존재합니다.\n");
 		}
 		else if(pw == null) {
-	    	System.out.println("설정할 비밀번호를 입력하십시오.");
+			newUser.userId = id;
+			newUser.pw = pw;
+	        userList.add(newUser);
+	        System.out.printf("환영합니다 %s님\n", id);
 		}
-        userList.add(newUser);
 	}
 	
 	public User find(String kwd) {

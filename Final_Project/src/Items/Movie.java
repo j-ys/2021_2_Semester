@@ -22,6 +22,7 @@ public class Movie extends Item{
 		for(String str : mainActor){
 			mainActors.add(str);
 		}
+		imagePath = scan.next();
 		summary = scan.nextLine();
 	}
 	

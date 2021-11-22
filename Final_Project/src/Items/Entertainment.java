@@ -22,6 +22,7 @@ public class Entertainment extends Item{
 		for(String str : castmate){
 			castmates.add(str);
 		}
+		imagePath = scan.next();
 		summary = scan.nextLine();
 	}
 

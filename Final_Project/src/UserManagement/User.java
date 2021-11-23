@@ -5,7 +5,6 @@ public class User{
 	public String userId;
 	public String pw;
 	
-
 	public void read(Scanner scan) {
 		userId = scan.next();
 		pw = scan.next();

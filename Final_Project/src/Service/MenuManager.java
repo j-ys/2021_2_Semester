@@ -3,6 +3,7 @@ package Service;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import GUI.GUIManager;
 import Items.Animation;
 import Items.Entertainment;
 import Items.Item;
@@ -14,66 +15,64 @@ import UserManagement.User;
 import UserManagement.UserManager;
 
 public class MenuManager {
-	public MenuManager(ArrayList<Item> itemList, ArrayList<User> userList, ArrayList<Review> reviewList, Scanner scan) {
-		this.itemList = itemList;
-		this.userList = userList;
-		this.reviewList = reviewList;
-		this.scan = scan;
-	}
+	public MenuManager() {
+		
+	}	
 	private ArrayList<Item> itemList;
 	private ArrayList<User> userList;
 	private ArrayList<Review> reviewList;
 	private Scanner scan;
-	private User nowUser = new User();
-	private UserManager log = new UserManager(userList, scan);
+	private User nowUser;
+	private UserManager userManager;
+	private GUIManager guiManager;
+
+	public void init(ArrayList<Item> itemList, ArrayList<User> userList, ArrayList<Review> reviewList, Scanner scan) {
+		this.itemList = itemList;
+		this.userList = userList;
+		this.reviewList = reviewList;
+		this.scan = scan;
+		nowUser = new User();
+		userManager = new UserManager(userList, scan);
+		guiManager = new GUIManager();
+		guiManager.init();
+	}
 	
 	//menu system
 		private enum MenuState{
-			NONE, START, MAIN, LOGIN, SIGN_UP, ADMIN, REVIEW
+			NONE, MAIN, LOGIN, ADMIN, END
 		}
-		private MenuState menuState = MenuState.ADMIN;//plz modify to NONE
+		private MenuState menuState = MenuState.NONE;//plz modify to NONE
+		public void changeMenuState(String nextMenu) {
+			menuState = MenuState.valueOf(nextMenu);
+		}
+		
 		public void menuRun(){
 			boolean processRunning = true;
-			//여기서 GUI Open
+			menuState = MenuState.LOGIN;
+			System.out.println("Menu Run start");
 			while (processRunning) {
-				switch (menuState) {
-				case START:
-					startMenu();
-					break;
+				System.out.println("while...");
+				switch (menuState) {		
 				case MAIN:
 					mainMenu();
 					break;
 				case LOGIN:
 					loginMenu();
 					break;
-				case SIGN_UP:
-					signUpMenu();
-					break;
 				case ADMIN:
 					adminMenu();
 					break;
+				case END:
+					processRunning = false;
+					break;
 				}
 			}
+			System.out.println("Process done");
 		}
-		
-		//User Menus
-		private void startMenu()
-		{
-			System.out.println("시작하기");
-			boolean isClicked = false;
-			while(true) {
-				//시작하기가 눌리면 다음 인터페이스로 이동
-				if(isClicked) {
-					menuState =  MenuState.MAIN;
-				}
-			}
-		}
-		
+			
+		//User Menus	
 		private void mainMenu(){
-			boolean done = false;
-			while(done ) {				
-				// GUI버튼 보여주기		
-			}
+			guiManager.runMenu("main");
 		}
 		
 		private void reviewMenu()
@@ -106,13 +105,9 @@ public class MenuManager {
 		
 		
 		private void loginMenu() {
-			nowUser = log.login();
-		}
-		
-		private void signUpMenu() {
-			log.signUp();
-		}
-		
+			guiManager.runMenu("login");
+			//nowUser = userManager.login();
+		}	
 		
 		//Admin Menus
 		private void adminMenu() { //삽입 삭제 수정
@@ -142,6 +137,8 @@ public class MenuManager {
 					break;
 				}
 			}
+			menuState = MenuState.LOGIN;
+			System.out.println("****Admin mode off****");
 		}
 		
 		private void insertData() {
@@ -175,6 +172,7 @@ public class MenuManager {
 				item.setData(scan);
 				itemList.add(item);
 			}
+			System.out.println("****Insert mode off****");
 		}	
 		
 		private void printData() {
@@ -212,6 +210,7 @@ public class MenuManager {
 					System.out.println("Delete done");
 				}	
 			}
+			System.out.println("****Delete mode off****");
 		}
 		
 		private void modifyData() {
@@ -246,5 +245,6 @@ public class MenuManager {
 					System.out.println("Modify done");
 				}	
 			}
+			System.out.println("****Modify mode off****");
 		}
 }

@@ -17,6 +17,7 @@ public class UserManager {
 		System.out.print("password: ");
 		String pw = scan.next();
 		User user = find(id);
+		
 		if(user == null || !user.pw.equals(pw)) {
 	    	System.out.println("아이디 또는 비밀번호가 일치하지 않습니다.");
 	    	return null;
@@ -25,7 +26,7 @@ public class UserManager {
 	}
 	
 	public User withDrawal(User user) {
-		System.out.println("탈퇴하시겠습니까?");
+		System.out.println("탈퇴하시겠습니까? (y/n) : ");
 		String ans = scan.next();
 		if(!ans.equals("y")) return user;
 		

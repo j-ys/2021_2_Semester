@@ -15,17 +15,16 @@ public class ServiceManager {
 	private ArrayList<User> userList= new ArrayList<User>();
 	private ArrayList<Review> reviewList= new ArrayList<Review>();
 	private Scanner scan = new Scanner(System.in);
-	private MenuManager menuManger;
-
+	
 	public void init() {
 		readDatas();
 		readUsers();
 		readReviews();
-		menuManger = new MenuManager(itemList, userList, reviewList, scan);
+		Managers.menuManger.init(itemList, userList, reviewList, scan);
 	}
 	
 	public void run() {
-		menuManger.menuRun();
+		Managers.menuManger.menuRun();
 	}
 	
 	private void readDatas() {
@@ -36,7 +35,6 @@ public class ServiceManager {
 			nowData = file.next();
 			nowItem = ItemFactory.createItem(nowData);
 			nowItem.read(file);
-			nowItem.print();
 			itemList.add(nowItem);
 		}
 	}

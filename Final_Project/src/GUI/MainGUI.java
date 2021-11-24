@@ -14,6 +14,8 @@ import java.awt.Image;
 import java.awt.event.*;
 import java.util.ArrayList;
 import Items.Item;
+import ProcessManagement.Managers;
+
 class JPanel011 extends JPanel { // 1번 패널
 
 	public JPanel011() { // 1번째 패널 생성자
@@ -56,11 +58,20 @@ class JPanel011 extends JPanel { // 1번 패널
 
 class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 	public JPanel022() { // 2번째 패널 생성자
-		ArrayList<Item> items;
+		ArrayList<Item> items = Managers.managedList.itemList;
 		String header[] = { "종류", "장르", "제목", "방영년도", "평점", "주연", "줄거리" };
-		String contents[][] = { { "Animation", "SF, FANTASY", "귀멸의 칼날", "2020", "3.7", "null", "탄지로 젠이츠 ~~" },
-				{ "Movie", "THRILLER,COMEDY", "기생충", "2019", "4.4", "송강호, 이선균", "반지하 ~~" } };
-
+		
+		ArrayList<String[]> itemsData = new ArrayList<String[]>();
+		for(Item item : items) {
+			String sample[] = {item.getType(),item.getCategories(),item.getName(),item.getTime()+"",item.getRating()+"",item.getActor(),item.getSummary()};
+			itemsData.add(sample);
+		}
+		int numnum = itemsData.size();
+		String contents[][] = new String[numnum][];
+		int index = 0;
+		for(String[] itemsss : itemsData) {
+			contents[index++] = itemsss;
+		}
 		DefaultTableModel model = new DefaultTableModel(contents, header);
 		JTable table = new JTable(model);
 		JScrollPane scrollpane = new JScrollPane(table);

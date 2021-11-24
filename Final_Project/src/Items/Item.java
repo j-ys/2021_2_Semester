@@ -7,7 +7,7 @@ public abstract class Item {//Our Manageable
 	public abstract void read(Scanner scan);
 	public abstract void setData(Scanner scan);
 	public abstract boolean match(String kwd);
-	
+	public abstract String getType();
 	protected String name;
 	protected int time;
 	protected float grade;
@@ -95,14 +95,30 @@ public abstract class Item {//Our Manageable
 	}
 	public float getGrade() {
 		return grade;	
-	}
-	 
+	}	 
 	public int getRating(){ 
 		return rating;
 	}
 	
 	public String getImagePath() {
 		return imagePath;
+	}
+	public String getSummary() {
+		return summary;
+	}
+	public String getCategories(){
+		String res="";
+		for(int i=0;i<category.size();i++) {
+			if(i==(category.size()-1))
+				res += category.get(i).name();
+			else
+				res += category.get(i).name()+",";
+		}		
+		return res; 
+	}
+	
+	public String getActor() {
+		return "짱구";
 	}
 }
 

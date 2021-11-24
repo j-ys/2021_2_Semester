@@ -7,6 +7,10 @@ public class Movie extends Item{
 	String movieDirector;
 	ArrayList<String> mainActors = new ArrayList<String>();
 	
+	public String getType() {
+		return "Movie";
+	}
+	
 	@Override
 	public void read(Scanner scan) {
 		name = scan.next();

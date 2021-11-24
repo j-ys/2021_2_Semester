@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Animation extends Item{
-	
+	public String getType() {
+		return "Animation";
+	}
 	@Override
 	public void read(Scanner scan) {
 		name = scan.next();

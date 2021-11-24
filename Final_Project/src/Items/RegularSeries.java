@@ -6,7 +6,9 @@ import java.util.Scanner;
 public class RegularSeries extends Item{
 	String serviceChannel;
 	ArrayList<String> mainActors = new ArrayList<String>();
-	
+	public String getType() {
+		return "RegularSeries";
+	}
 	@Override
 	public void read(Scanner scan) {
 		name = scan.next();

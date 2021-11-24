@@ -6,7 +6,9 @@ import java.util.Scanner;
 public class OriginalSeries extends Item{
 	String servicePlatform;
 	ArrayList<String> mainActors = new ArrayList<String>();
-	
+	public String getType() {
+		return "OriginalSeries";
+	}
 	@Override
 	public void read(Scanner scan) {
 		name = scan.next();

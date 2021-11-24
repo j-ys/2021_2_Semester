@@ -2,13 +2,13 @@ package UserManagement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import ProcessManagement.Managers;
+
 
 public class UserManager {
-	public UserManager(ArrayList<User> userList, Scanner scan) {
-		this.userList = userList;
+	public UserManager(Scanner scan) {	
 		this.scan = scan;
 	}
-	private ArrayList<User> userList;
 	private Scanner scan;
 	
 	public User login() {
@@ -30,10 +30,10 @@ public class UserManager {
 		String ans = scan.next();
 		if(!ans.equals("y")) return user;
 		
-		for(int i=0; i< userList.size() ;i++){
-            User m = userList.get(i);
+		for(int i=0; i< Managers.managedList.userList.size() ;i++){
+            User m = Managers.managedList.userList.get(i);
 	        if(m.equals(user)) {
-	            userList.remove(i);
+	        	Managers.managedList.userList.remove(i);
 	            return null;
 	        }
         }
@@ -67,13 +67,13 @@ public class UserManager {
 		else if(pw == null) {
 			newUser.userId = id;
 			newUser.pw = pw;
-	        userList.add(newUser);
+			Managers.managedList.userList.add(newUser);
 	        System.out.printf("환영합니다 %s님\n", id);
 		}
 	}
 	
 	public User find(String kwd) {
-		for (User m: userList) {
+		for (User m: Managers.managedList.userList) {
 			if(m.match(kwd))
 				return m;
 		}

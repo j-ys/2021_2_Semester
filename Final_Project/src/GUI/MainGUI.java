@@ -12,62 +12,51 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.*;
-
+import java.util.ArrayList;
+import Items.Item;
 class JPanel011 extends JPanel { // 1번 패널
 
 	public JPanel011() { // 1번째 패널 생성자
 		setLayout(null);
 		JButton bt_img1;
-		//JTable table = new JTable();
-		ImageIcon images= new ImageIcon("./Animation/겨울왕국.png");
-		Image im = images.getImage(); //뽑아온 이미지 객체 사이즈를 새롭게 만들기!
-
+		// JTable table = new JTable();
+		ImageIcon images = new ImageIcon("./Animation/겨울왕국.png");
+		Image im = images.getImage(); // 뽑아온 이미지 객체 사이즈를 새롭게 만들기!
 		Image im2 = im.getScaledInstance(200, 300, Image.SCALE_SMOOTH);
-
-		//새로 조절된 사이즈의 이미지(im2)를 가지는 ImageIcon 객체를 다시 생성
-
+		// 새로 조절된 사이즈의 이미지(im2)를 가지는 ImageIcon 객체를 다시 생성
 		ImageIcon icon2 = new ImageIcon(im2);
 		bt_img1 = new JButton(icon2);
-		//bt_img.setPreferredSize(new Dimension(300, 10));
-		
-		//JLabel img = new JLabel(icon2);
-		//img.setLocation(100,60);
-		bt_img1.setSize(200,300);
+		// bt_img.setPreferredSize(new Dimension(300, 10));
+
+		// JLabel img = new JLabel(icon2);
+		// img.setLocation(100,60);
+		bt_img1.setSize(200, 300);
 		bt_img1.setLocation(10, 20);
 		bt_img1.setBorderPainted(false);
-
 		bt_img1.setFocusPainted(false);
-
 		bt_img1.setContentAreaFilled(false);
 		add(bt_img1);
-		
+
 		JButton bt_img2;
-		//JTable table = new JTable();
-		ImageIcon images2= new ImageIcon("./Animation/귀멸의칼날.png");
-		Image im3 = images2.getImage(); //뽑아온 이미지 객체 사이즈를 새롭게 만들기!
-
+		// JTable table = new JTable();
+		ImageIcon images2 = new ImageIcon("./Animation/귀멸의칼날.png");
+		Image im3 = images2.getImage(); // 뽑아온 이미지 객체 사이즈를 새롭게 만들기!
 		Image im4 = im3.getScaledInstance(200, 300, Image.SCALE_SMOOTH);
-
-		//새로 조절된 사이즈의 이미지(im2)를 가지는 ImageIcon 객체를 다시 생성
-
+		// 새로 조절된 사이즈의 이미지(im2)를 가지는 ImageIcon 객체를 다시 생성
 		ImageIcon icon3 = new ImageIcon(im4);
 		bt_img2 = new JButton(icon3);
-		bt_img2.setSize(200,300);
+		bt_img2.setSize(200, 300);
 		bt_img2.setLocation(240, 20);
 		bt_img2.setBorderPainted(false);
-
 		bt_img2.setFocusPainted(false);
-
 		bt_img2.setContentAreaFilled(false);
 		add(bt_img2);
-		
-		}
-	
-	
+	}
 }
 
 class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 	public JPanel022() { // 2번째 패널 생성자
+		ArrayList<Item> items;
 		String header[] = { "종류", "장르", "제목", "방영년도", "평점", "주연", "줄거리" };
 		String contents[][] = { { "Animation", "SF, FANTASY", "귀멸의 칼날", "2020", "3.7", "null", "탄지로 젠이츠 ~~" },
 				{ "Movie", "THRILLER,COMEDY", "기생충", "2019", "4.4", "송강호, 이선균", "반지하 ~~" } };
@@ -95,7 +84,6 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 		JTextField search = new JTextField(15);
 		JComboBox<String> combo;
 		String[] cbdata = { "장르", "제목", "종류", "방영년도", "평점", "주연" };
-		;
 
 		JComboBox<String> jcb = new JComboBox<String>(cbdata);
 		jcb.setLocation(20, 20);
@@ -116,63 +104,62 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 		// TODO Auto-generated method stub
 
 	}
-
 }
 
 class JPanel033 extends JPanel {
 	public JPanel033() {
 		setLayout(null);
 		JButton bt_img;
-		
-		//JTable table = new JTable();
-		ImageIcon images= new ImageIcon("./NoRecommand.png");
-		Image im = images.getImage(); //뽑아온 이미지 객체 사이즈를 새롭게 만들기!
+
+		// JTable table = new JTable();
+		ImageIcon images = new ImageIcon("./NoRecommand.png");
+		Image im = images.getImage(); // 뽑아온 이미지 객체 사이즈를 새롭게 만들기!
 
 		Image im2 = im.getScaledInstance(230, 230, Image.SCALE_SMOOTH);
 
-		//새로 조절된 사이즈의 이미지(im2)를 가지는 ImageIcon 객체를 다시 생성
+		// 새로 조절된 사이즈의 이미지(im2)를 가지는 ImageIcon 객체를 다시 생성
 
 		ImageIcon icon2 = new ImageIcon(im2);
 		bt_img = new JButton(icon2);
-		//bt_img.setPreferredSize(new Dimension(300, 10));
-		
-		//JLabel img = new JLabel(icon2);
-		//img.setLocation(100,60);
-		bt_img.setSize(400,400);
-		bt_img.setLocation(220,50);
+		// bt_img.setPreferredSize(new Dimension(300, 10));
+
+		// JLabel img = new JLabel(icon2);
+		// img.setLocation(100,60);
+		bt_img.setSize(400, 400);
+		bt_img.setLocation(220, 50);
 		bt_img.setBorderPainted(false);
 		bt_img.setFocusPainted(false);
 		bt_img.setContentAreaFilled(false);
 		add(bt_img);
-		
+
 		JButton nextRecom;
-		ImageIcon next= new ImageIcon("./NextRecommand.png");
+		ImageIcon next = new ImageIcon("./NextRecommand.png");
 		Image nextim = next.getImage();
 		Image im3 = nextim.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
 		ImageIcon icon3 = new ImageIcon(im3);
 		nextRecom = new JButton(icon3);
-		nextRecom.setSize(400,400);
-		nextRecom.setLocation(500,50);
+		nextRecom.setSize(400, 400);
+		nextRecom.setLocation(500, 50);
 		nextRecom.setBorderPainted(false);
-		//nextRecom.setFocusPainted(false);
+		// nextRecom.setFocusPainted(false);
 		nextRecom.setContentAreaFilled(false);
 		add(nextRecom);
-		//이벤트 처리하기 
-		
-		//if 시청기록 없을 경우
+		// 이벤트 처리하기
+
+		// if 시청기록 없을 경우
 		JLabel label = new JLabel("추천드릴 콘텐츠가 없어요    :(");
-		label.setLocation(330,400);
-		label.setSize(200,20);
+		label.setLocation(330, 400);
+		label.setSize(200, 20);
 		add(label);
-		
+
 		/*
-		 	else 시청기록 있을 경우
-		 	
+		 * else 시청기록 있을 경우
+		 * 
 		 */
 	}
 }
 
-class JPanel044 extends JPanel {
+class JPanel044 extends JPanel {// 리뷰 Panel
 
 }
 
@@ -182,19 +169,17 @@ public class MainGUI extends JFrame {
 	public JPanel033 jpanel03 = null;
 	public JPanel044 jpanel04 = null;
 
-	
 	public MainGUI() {
 		init();
 		runFrame();
 	}
-	
+
 	public void init() {
 		setTitle("OTT Service_ Coffee Machine");
 		jpanel01 = new JPanel011();
 		jpanel02 = new JPanel022();
 		jpanel03 = new JPanel033();
 		jpanel04 = new JPanel044();
-
 
 		JTabbedPane jtab = new JTabbedPane(); // JTabbedPane 객체 생성
 		jtab.setTabPlacement(JTabbedPane.TOP);
@@ -219,9 +204,8 @@ public class MainGUI extends JFrame {
 
 		});
 	}
-	
-	public void runFrame()
-	{
+
+	public void runFrame() {
 		setVisible(true);
 	}
 	/*
@@ -237,16 +221,14 @@ public class MainGUI extends JFrame {
 		btn.setFont(new Font("맑은 고딕", 0, 15)); // TODO 폰트 정의
 		btn.setHorizontalAlignment(JLabel.CENTER); // TODO 텍스트 센터 표시 설정
 	}
-	
-	/*
-	@Override
-	public void windowClosed(WindowEvent e) {
-		System.out.println("Process done");
-		Managers.menuManger.changeMenuState("END");
-		System.out.println("Process done");
-	}*/
 
-	
+	/*
+	 * @Override public void windowClosed(WindowEvent e) {
+	 * System.out.println("Process done");
+	 * Managers.menuManger.changeMenuState("END");
+	 * System.out.println("Process done"); }
+	 */
+
 }
 
 /*

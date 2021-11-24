@@ -10,6 +10,7 @@ import Items.Item;
 import Items.Movie;
 import Items.OriginalSeries;
 import Items.RegularSeries;
+import ProcessManagement.Managers;
 import ReviewManagement.Review;
 import UserManagement.User;
 import UserManagement.UserManager;
@@ -18,21 +19,15 @@ public class MenuManager {
 	public MenuManager() {
 		
 	}	
-	private ArrayList<Item> itemList;
-	private ArrayList<User> userList;
-	private ArrayList<Review> reviewList;
 	private Scanner scan;
 	private User nowUser;
 	private UserManager userManager;
 	private GUIManager guiManager;
 
-	public void init(ArrayList<Item> itemList, ArrayList<User> userList, ArrayList<Review> reviewList, Scanner scan) {
-		this.itemList = itemList;
-		this.userList = userList;
-		this.reviewList = reviewList;
+	public void init( Scanner scan) {
 		this.scan = scan;
 		nowUser = new User();
-		userManager = new UserManager(userList, scan);
+		userManager = new UserManager(scan);
 		guiManager = new GUIManager();
 		guiManager.init();
 	}
@@ -73,7 +68,7 @@ public class MenuManager {
 			id = "kkk";
 			int exist = 0;
 			String name = "오징어게임";
-			for (Review rev : reviewList) {
+			for (Review rev : Managers.managedList.reviewList) {
 				if (rev.match(id, name)) {
 					exist = 1;
 				}
@@ -91,7 +86,7 @@ public class MenuManager {
 				newReview.name = name;
 				newReview.grade = grade;
 				newReview.content = review;
-		        reviewList.add(newReview);
+				Managers.managedList.reviewList.add(newReview);
 			}
 		}
 				
@@ -161,13 +156,13 @@ public class MenuManager {
 					continue;
 				}
 				item.setData(scan);
-				itemList.add(item);
+				Managers.managedList.itemList.add(item);
 			}
 			System.out.println("****Insert mode off****");
 		}	
 		
 		private void printData() {
-			for(Item item : itemList) {
+			for(Item item : Managers.managedList.itemList) {
 				item.print();
 			}
 		}
@@ -183,7 +178,7 @@ public class MenuManager {
 				kwd = scan.next();
 				if (kwd.equals("end"))
 					break;
-				for (Item item : itemList) {
+				for (Item item : Managers.managedList.itemList) {
 					if (item.match(kwd)) {
 						item.print();
 						findItems.add(item);
@@ -197,7 +192,7 @@ public class MenuManager {
 					int input = 0;
 					System.out.printf("[%d]items matched, Select one :", findItems.size());
 					input = scan.nextInt();
-					itemList.remove(findItems.get(input-1));
+					Managers.managedList.itemList.remove(findItems.get(input-1));
 					System.out.println("Delete done");
 				}	
 			}
@@ -216,7 +211,7 @@ public class MenuManager {
 				kwd = scan.next();
 				if (kwd.equals("end"))
 					break;
-				for (Item item : itemList) {
+				for (Item item : Managers.managedList.itemList) {
 					if (item.match(kwd)) {
 						System.out.printf("(%d) : ",cnt++);
 						item.print(); //add Matches, print method

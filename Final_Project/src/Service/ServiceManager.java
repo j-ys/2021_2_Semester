@@ -11,16 +11,13 @@ import Items.Item;
 import Items.ItemFactory;
 
 public class ServiceManager {
-	private ArrayList<Item> itemList= new ArrayList<Item>();
-	private ArrayList<User> userList= new ArrayList<User>();
-	private ArrayList<Review> reviewList= new ArrayList<Review>();
 	private Scanner scan = new Scanner(System.in);
 	
 	public void init() {
 		readDatas();
 		readUsers();
 		readReviews();
-		Managers.menuManger.init(itemList, userList, reviewList, scan);
+		Managers.menuManger.init(scan);
 	}
 	
 	public void run() {
@@ -35,7 +32,7 @@ public class ServiceManager {
 			nowData = file.next();
 			nowItem = ItemFactory.createItem(nowData);
 			nowItem.read(file);
-			itemList.add(nowItem);
+			Managers.managedList.itemList.add(nowItem);
 		}
 	}
 	
@@ -45,7 +42,7 @@ public class ServiceManager {
 		while(file.hasNext()){
 			nowUser.read(file);
 			nowUser.print();
-			userList.add(nowUser);
+			Managers.managedList.userList.add(nowUser);
 		}
 	}
 	
@@ -55,7 +52,7 @@ public class ServiceManager {
 		while(file.hasNext()){
 			review.read(file);
 			review.print();
-			reviewList.add(review);
+			Managers.managedList.reviewList.add(review);
 		}
 	}
 }

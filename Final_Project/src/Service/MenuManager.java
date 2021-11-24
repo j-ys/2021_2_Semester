@@ -99,11 +99,11 @@ public class MenuManager {
 		public void adminMenu() { //삽입 삭제 수정
 			boolean done = false;
 			int input = 0;
+			System.out.println("****Admin mode on****");
 			while(!done) {
-				System.out.println("****Admin mode on****");
+				System.out.println("****Admin loop on****");
 				System.out.print("Data handling|(1)Insert (2)Delete (3)Modify (4)Print (5)exit :");
-				input = scan.nextInt();
-				
+				input = scan.nextInt();				
 				switch(input) {
 				case 1:
 					insertData();
@@ -123,7 +123,6 @@ public class MenuManager {
 					break;
 				}
 			}
-			menuState = MenuState.LOGIN;
 			System.out.println("****Admin mode off****");
 		}
 		

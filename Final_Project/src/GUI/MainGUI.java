@@ -176,46 +176,53 @@ class JPanel044 extends JPanel {
 
 }
 
-public class MainGUI extends JFrame implements WindowListener{
-	MainGUI win;
+public class MainGUI extends JFrame {
 	public JPanel011 jpanel01 = null;
 	public JPanel022 jpanel02 = null;
 	public JPanel033 jpanel03 = null;
 	public JPanel044 jpanel04 = null;
 
+	
+	public MainGUI() {
+		init();
+		runFrame();
+	}
+	
 	public void init() {
-		win = new MainGUI();
-		win.setTitle("OTT Service_ Coffee Machine");
-		win.jpanel01 = new JPanel011();
-		win.jpanel02 = new JPanel022();
-		win.jpanel03 = new JPanel033();
-		win.jpanel04 = new JPanel044();
+		setTitle("OTT Service_ Coffee Machine");
+		jpanel01 = new JPanel011();
+		jpanel02 = new JPanel022();
+		jpanel03 = new JPanel033();
+		jpanel04 = new JPanel044();
 
-		// JPanel p = new JPanel();
-		// p.setBackground(new Color(255,0,0,255));
-
-		// JFrame f = new JFrame();
-		// f.getContentPane().setBackground(Color.BLACK);
 
 		JTabbedPane jtab = new JTabbedPane(); // JTabbedPane 객체 생성
 		jtab.setTabPlacement(JTabbedPane.TOP);
-		jtab.addTab("Contents", win.jpanel01);
-		jtab.addTab("Search/Sorting", win.jpanel02);
-		jtab.addTab("Recommend", win.jpanel03);
-		jtab.addTab("Review", win.jpanel04);
+		jtab.addTab("Contents", jpanel01);
+		jtab.addTab("Search/Sorting", jpanel02);
+		jtab.addTab("Recommend", jpanel03);
+		jtab.addTab("Review", jpanel04);
 
 		Dimension dim = new Dimension(430, 400);
-		win.setResizable(false);
-		win.add(jtab);
-		win.setLocation(400, 100);
-		win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		win.setBackground(Color.black);
-		win.setSize(900, 650);
+		setResizable(false);
+		add(jtab);
+		setLocation(400, 100);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBackground(Color.black);
+		setSize(900, 650);
+		addWindowListener(new WindowAdapter() {
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+
+		});
 	}
 	
 	public void runFrame()
 	{
-		win.setVisible(true);
+		setVisible(true);
 	}
 	/*
 	 * public static void setJComboBoxStyle(JComboBox combo) {
@@ -230,37 +237,16 @@ public class MainGUI extends JFrame implements WindowListener{
 		btn.setFont(new Font("맑은 고딕", 0, 15)); // TODO 폰트 정의
 		btn.setHorizontalAlignment(JLabel.CENTER); // TODO 텍스트 센터 표시 설정
 	}
+	
+	/*
 	@Override
 	public void windowClosed(WindowEvent e) {
 		System.out.println("Process done");
 		Managers.menuManger.changeMenuState("END");
 		System.out.println("Process done");
-	}
+	}*/
 
-	@Override
-	public void windowOpened(WindowEvent e) {
-	}
-
-	@Override
-	public void windowClosing(WindowEvent e) {System.out.println("Process done");
-	}
 	
-
-	@Override
-	public void windowIconified(WindowEvent e) {
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent e) {
-	}
-
-	@Override
-	public void windowActivated(WindowEvent e) {
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent e) {
-	}
 }
 
 /*

@@ -10,6 +10,11 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import com.sun.tools.javac.Main;
 import ProcessManagement.Managers;
+import javax.swing.SwingWorker;
 
 public class LoginFrame extends JFrame implements MyFrame {
 
@@ -30,24 +36,19 @@ public class LoginFrame extends JFrame implements MyFrame {
 	private JPasswordField tPassword;
 	private JButton loginButton, signUpButton, exitButton;
 	private String nextSystem;
-	private boolean isRunning = false;
-
-	public void startMenu() {
-		isRunning = true;
-	}
-	
-	public boolean isRunning() {
-		return this.isRunning;
-	}
 	
 	public LoginFrame() {
 		super("Nutflix");
+		init();
+		runFrame();
 	}
 
 	public void init() {
 		super.setResizable(true);
 		setSize(350, 400);
 		setLocationRelativeTo(null);
+		
+		
 		ImageIcon icon = new ImageIcon("nut.png");
 		JPanel background = new JPanel() {
 			public void paintComponent(Graphics g) {
@@ -104,34 +105,30 @@ public class LoginFrame extends JFrame implements MyFrame {
 		setVisible(true);
 	}
 
-	public void disposeFrame() {
-
-	}
-
 	private void buttonSetting() {
 		loginButton = new JButton("로그인");
 		signUpButton = new JButton("회원가입");
 		exitButton = new JButton("닫기");
-
+		
 		loginButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String id = tId.getText();
 				String password = tPassword.getText();
-
+				
 				String result = tId.getText();
 				if (result.equals("1")) {
 					JOptionPane.showMessageDialog(null, "로그인 완료");
-					Managers.menuManger.changeMenuState("MAIN");
+    				Managers.menuManger.changeMenuState("MAIN");
+    				MainGUI masd = new MainGUI ();
 					dispose();
-				} else if (result.equals("2")) {// ticket 2 : admin일 때로ㅓ 바꾸기
+				} else if (result.equals("2")) {
 					JOptionPane.showMessageDialog(null, "어드민 로그인 완료");
-					Managers.menuManger.changeMenuState("ADMIN");
+					Managers.menuManger.adminMenu();
 					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "로그인 실패");
 				}
-
 			}
 		});
 		signUpButton.addActionListener(new ActionListener() {
@@ -146,7 +143,7 @@ public class LoginFrame extends JFrame implements MyFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Managers.menuManger.changeMenuState("END");
-				dispose(); // ticket 1아예 프로그램 종료해버리는걸로 바꾸기
+				System.exit(0); 
 			}
 		});
 	}

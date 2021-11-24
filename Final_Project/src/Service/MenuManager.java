@@ -48,26 +48,18 @@ public class MenuManager {
 		
 		public void menuRun(){
 			boolean processRunning = true;
-			menuState = MenuState.LOGIN;
 			System.out.println("Menu Run start");
-			while (processRunning) {
-				System.out.println("while...");
-				switch (menuState) {		
-				case MAIN:
-					mainMenu();
-					break;
-				case LOGIN:
-					loginMenu();
-					break;
-				case ADMIN:
-					adminMenu();
-					break;
-				case END:
-					processRunning = false;
-					break;
-				}
+			menuState = MenuState.LOGIN;
+			loginMenu();
+			if( menuState == MenuState.MAIN) {
+				mainMenu();
 			}
-			System.out.println("Process done");
+			else if(menuState == MenuState.ADMIN) {
+				adminMenu();
+			}
+			else {
+				processRunning = false;
+			}
 		}
 			
 		//User Menus	
@@ -102,15 +94,14 @@ public class MenuManager {
 		        reviewList.add(newReview);
 			}
 		}
-		
-		
+				
 		private void loginMenu() {
 			guiManager.runMenu("login");
 			//nowUser = userManager.login();
 		}	
 		
 		//Admin Menus
-		private void adminMenu() { //삽입 삭제 수정
+		public void adminMenu() { //삽입 삭제 수정
 			boolean done = false;
 			int input = 0;
 			while(!done) {

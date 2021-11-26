@@ -2,19 +2,20 @@ package GUI;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import ProcessManagement.Managers;
 
 import java.awt.Color;
-import java.awt.Container;
+import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Vector;
+
 import Items.Item;
-import ProcessManagement.Managers;
 
 class JPanel011 extends JPanel { // 1번 패널
 
@@ -92,7 +93,6 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 		add(sbutton);
 		sbutton.addActionListener(this);
 
-		JTextField search = new JTextField(15);
 		JComboBox<String> combo;
 		String[] cbdata = { "장르", "제목", "종류", "방영년도", "평점", "주연" };
 
@@ -101,15 +101,68 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 		jcb.setSize(70, 30);
 		add(jcb);
 
+		jcb.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String field = (String) jcb.getSelectedItem();
+				if(field.equals("제목")) Managers.sortingManager.mySort(Managers.managedList.itemList,1);
+				else if(field.equals("방영년도")) Managers.sortingManager.mySort(Managers.managedList.itemList,2);
+				else if(field.equals("평점")) Managers.sortingManager.mySort(Managers.managedList.itemList,3);
+				for(Item i1 : Managers.managedList.itemList) {
+					i1.print();
+				}
+				tableModelUpdate(model);
+			}
+			
+		});
+		
 		sbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String field = (String) jcb.getSelectedItem();
-				String word = search.getText();
+				String word = sText.getText();
+
+				
+				if(word.equals(null)) {
+
+				}
+				else if(!word.equals(null)) {
+					//검색
+					int index = 0;
+					for(Item item : Managers.managedList.itemList) {
+						if(item.match(word)) {
+							item.print();
+						}
+					}
+				}
 			}
+			
 		});
 
 	}
-
+	void tableModelUpdate(DefaultTableModel model) {
+	      int rowCnt = model.getRowCount();
+	      for(int i=0;i<rowCnt;i++) {
+	         model.removeRow(0);
+	      }
+	      
+	      ArrayList<Item> items = Managers.managedList.itemList;
+	      ArrayList<String[]> itemsData = new ArrayList<String[]>();
+	      for(Item item : items) {
+	         String sample[] = {item.getType(),item.getCategories(),item.getName(),item.getTime()+"",item.getRating()+"",item.getActor(),item.getSummary()};
+	         itemsData.add(sample);
+	      }
+	      String contents[][] = new String[itemsData.size()][];
+	      int index = 0;
+	      for(String[] itemsss : itemsData) {
+	         contents[index++] = itemsss;
+	      }
+	      
+	      for(int i=0;i<contents.length;i++) {
+	         model.addRow(contents[i]);
+	      }
+	   }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

@@ -26,6 +26,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import com.sun.tools.javac.Main;
 import ProcessManagement.Managers;
+import UserManagement.User;
+import UserManagement.UserManager;
+
 import javax.swing.SwingWorker;
 
 public class LoginFrame extends JFrame implements MyFrame {
@@ -53,7 +56,7 @@ public class LoginFrame extends JFrame implements MyFrame {
 		JPanel background = new JPanel() {
 			public void paintComponent(Graphics g) {
 				g.drawImage(icon.getImage(), 0, 0, null);
-				setOpaque(false); // �׸��� ǥ���ϰ� ����,�����ϰ� ����
+				setOpaque(false); // 占쌓몌옙占쏙옙 표占쏙옙占싹곤옙 占쏙옙占쏙옙,占쏙옙占쏙옙占싹곤옙 占쏙옙占쏙옙
 				super.paintComponent(g);
 			}
 		};
@@ -115,14 +118,14 @@ public class LoginFrame extends JFrame implements MyFrame {
 			public void actionPerformed(ActionEvent e) {
 				String id = tId.getText();
 				String password = tPassword.getText();
-				
-				String result = tId.getText();
-				if (result.equals("1")) {
+				User u1 = new User();
+				String result = u1.memberLogin(id, password);
+				if (result != null && !result.equals("song")) {
 					JOptionPane.showMessageDialog(null, "로그인 완료");
     				Managers.menuManger.changeMenuState("MAIN");
     				MainGUI masd = new MainGUI ();
 					dispose();
-				} else if (result.equals("2")) {
+				} else if (result.equals("song")) {
 					JOptionPane.showMessageDialog(null, "어드민 로그인 완료");
 					Managers.menuManger.adminMenu();
 					dispose();

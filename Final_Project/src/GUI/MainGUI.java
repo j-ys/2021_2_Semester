@@ -20,55 +20,56 @@ import Items.Item;
 class JPanel011 extends JPanel { // 1번 패널
 
 	public JPanel011() { // 1번째 패널 생성자
-		setLayout(null);
-		JButton bt_img1;
-		// JTable table = new JTable();
-		ImageIcon images = new ImageIcon("./Animation/겨울왕국.png");
-		Image im = images.getImage(); // 뽑아온 이미지 객체 사이즈를 새롭게 만들기!
-		Image im2 = im.getScaledInstance(200, 300, Image.SCALE_SMOOTH);
-		// 새로 조절된 사이즈의 이미지(im2)를 가지는 ImageIcon 객체를 다시 생성
-		ImageIcon icon2 = new ImageIcon(im2);
-		bt_img1 = new JButton(icon2);
+		JPanel jp_label = new JPanel();
+	      JScrollPane scrollpane = new JScrollPane(jp_label, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-		bt_img1.setSize(200, 300);
-		bt_img1.setLocation(10, 20);
-		bt_img1.setBorderPainted(false);
-		bt_img1.setFocusPainted(false);
-		bt_img1.setContentAreaFilled(false);
-		add(bt_img1);
+	      scrollpane.setLocation(100, 60);
+	      scrollpane.setPreferredSize(new Dimension(900, 650));
 
-		JButton bt_img2;
-		// JTable table = new JTable();
-		ImageIcon images2 = new ImageIcon("./Animation/귀멸의칼날.png");
-		Image im3 = images2.getImage(); // 뽑아온 이미지 객체 사이즈를 새롭게 만들기!
-		Image im4 = im3.getScaledInstance(200, 300, Image.SCALE_SMOOTH);
-		// 새로 조절된 사이즈의 이미지(im2)를 가지는 ImageIcon 객체를 다시 생성
-		ImageIcon icon3 = new ImageIcon(im4);
-		bt_img2 = new JButton(icon3);
-		bt_img2.setSize(200, 300);
-		bt_img2.setLocation(240, 20);
-		bt_img2.setBorderPainted(false);
-		bt_img2.setFocusPainted(false);
-		bt_img2.setContentAreaFilled(false);
-		add(bt_img2);
+	      add(scrollpane);
+	      String[] title = { "겨울왕국", "귀멸의칼날", "라푼젤" };
+	         JLabel jLabel[] = new JLabel[title.length];
+	         ImageIcon icon[] = new ImageIcon[title.length];
+	         
+	         JButton bt[] = new JButton[title.length];
+	         JScrollPane scroll;
+	         scroll = new JScrollPane();  // 스크롤패널을 선언
+	         scroll.setBounds(0,0,160,160);
+	         
+	         for (int i = 0; i < title.length; i++) {            
+	            bt[i] = new JButton(title[i]);
+	            if (i < 4) {
+	               bt[i].setBounds(25 + i * 150, 50, 100, 100);
+	            } else {
+	               bt[i].setBounds(25 + (i - 4) * 150, 300, 100, 100);
+	            }
+	            icon[i] = new ImageIcon("./images/Animation/"+title[i]+".png");
+	            bt[i].setIcon(icon[i]);
+	            Image im = icon[i].getImage();
+	            Image im2 = im.getScaledInstance(50, 200, Image.SCALE_SMOOTH);
+	            //ImageIcon[] icon2= new ImageIcon(im2);
+	            jLabel[i] = new JLabel(title[i]);
+	            add(bt[i]);
+	         }    
+	   }
 	}
-}
+
 
 class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 	public JPanel022() { // 2번째 패널 생성자
 		ArrayList<Item> items = Managers.managedList.itemList;
-		String header[] = { "종류", "장르", "제목", "방영년도", "평점", "주연", "줄거리" };
+		String header[] = { "종류", "장르", "제목", "방영년도", "평점","시청등급", "줄거리" };
 		
 		ArrayList<String[]> itemsData = new ArrayList<String[]>();
 		for(Item item : items) {
-			String sample[] = {item.getType(),item.getCategories(),item.getName(),item.getTime()+"",item.getRating()+"",item.getSummary()};
+			String sample[] = { item.getType(), item.getCategories(), item.getName(), item.getTime() + "",
+								item.getGrade() + "", item.getRating() + "", item.getSummary() };
 			itemsData.add(sample);
 		}
-		int numnum = itemsData.size();
-		String contents[][] = new String[numnum][];
+		String contents[][] = new String[itemsData.size()][];
 		int index = 0;
-		for(String[] itemsss : itemsData) {
-			contents[index++] = itemsss;
+		for(String[] itemData : itemsData) {
+			contents[index++] = itemData;
 		}
 		DefaultTableModel model = new DefaultTableModel(contents, header);
 		JTable table = new JTable(model);
@@ -91,7 +92,7 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 		sbutton.addActionListener(this);
 
 		JComboBox<String> combo;
-		String[] cbdata = { "장르", "제목", "종류", "방영년도", "평점", "주연" };
+		String[] cbdata = {"제목", "방영년도", "평점"};
 
 		JComboBox<String> jcb = new JComboBox<String>(cbdata);
 		jcb.setLocation(20, 20);
@@ -103,11 +104,17 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String field = (String) jcb.getSelectedItem();
-				if(field.equals("제목")) Managers.sortingManager.mySort(Managers.managedList.itemList,1);
-				else if(field.equals("방영년도")) Managers.sortingManager.mySort(Managers.managedList.itemList,2);
-				else if(field.equals("평점")) Managers.sortingManager.mySort(Managers.managedList.itemList,3);
-				for(Item i1 : Managers.managedList.itemList) {
-					i1.print();
+				if(field.equals("제목")) {
+					Managers.sortingManager.mySort(Managers.managedList.itemList,1);
+				}
+				else if(field.equals("방영년도")) { 
+					Managers.sortingManager.mySort(Managers.managedList.itemList,2);
+				}
+				else if(field.equals("평점")) { 
+					Managers.sortingManager.mySort(Managers.managedList.itemList,3);
+				}
+				else {
+					return;
 				}
 				tableModelUpdate(model);
 			}
@@ -117,13 +124,8 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 		sbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String field = (String) jcb.getSelectedItem();
-				String word = sText.getText();
-
-				
-				if(word.equals(null)) {
-
-				}
-				else if(!word.equals(null)) {//검색
+				String word = sText.getText();			
+				if(!word.equals(null)) {//검색
 					int index = 0;
 					for(Item item : Managers.managedList.itemList) {
 						if(item.match(word)) {
@@ -150,8 +152,8 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 	      }
 	      String contents[][] = new String[itemsData.size()][];
 	      int index = 0;
-	      for(String[] itemsss : itemsData) {
-	         contents[index++] = itemsss;
+	      for(String[] itemData : itemsData) {
+	         contents[index++] = itemData;
 	      }
 	      
 	      for(int i=0;i<contents.length;i++) {

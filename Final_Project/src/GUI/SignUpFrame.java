@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 
 import ProcessManagement.Managers;
 
-public class SignUpFrame extends JFrame implements MyFrame{
+public class SignUpFrame extends JFrame{
 
 	private JPanel rPanel;
 	private JLabel rLabel;
@@ -73,13 +73,7 @@ public class SignUpFrame extends JFrame implements MyFrame{
 		signUpButton.setFont(new Font("Couruer New", Font.BOLD, 20));
 		signUpButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				/*Management mdto = new Management();
-				mdto.setId(tId.getText());
-				mdto.setPassword(tPassword.getText());*/
-				//Manage mdao = Manage.getInstance();
-				//int result = mdao.insertMember(mdto);
-				
+			public void actionPerformed(ActionEvent e) {		
 				String id = tId.getText();
 				String pw = tPassword.getText();
 				int result = Managers.userManager.signUp(id, pw);

@@ -116,9 +116,5 @@ public abstract class Item {//Our Manageable
 		}		
 		return res; 
 	}
-	
-	public String getActor() {
-		return "짱구";
-	}
 }
 

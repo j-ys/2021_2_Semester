@@ -11,16 +11,7 @@ public class GUIManager {
 	}
 
 	public void init() {
-		/*
-		 * } EventQueue.invokeLater(new Runnable() {
-		 * 
-		 * public void run() { try { loginFrame = new LoginFrame(); loginFrame.init(); }
-		 * catch (Exception e) { e.printStackTrace(); } }o });
-		 * 
-		 * EventQueue.invokeLater(new Runnable() { public void run() { try { mainGUI =
-		 * new MainGUI(); mainGUI.init(); } catch (Exception e) { e.printStackTrace(); }
-		 * } });
-		 */
+
 	}
 
 	public void runMenu(String menuName) {

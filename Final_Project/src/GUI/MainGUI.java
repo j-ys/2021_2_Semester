@@ -29,10 +29,7 @@ class JPanel011 extends JPanel { // 1번 패널
 		// 새로 조절된 사이즈의 이미지(im2)를 가지는 ImageIcon 객체를 다시 생성
 		ImageIcon icon2 = new ImageIcon(im2);
 		bt_img1 = new JButton(icon2);
-		// bt_img.setPreferredSize(new Dimension(300, 10));
 
-		// JLabel img = new JLabel(icon2);
-		// img.setLocation(100,60);
 		bt_img1.setSize(200, 300);
 		bt_img1.setLocation(10, 20);
 		bt_img1.setBorderPainted(false);
@@ -64,7 +61,7 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 		
 		ArrayList<String[]> itemsData = new ArrayList<String[]>();
 		for(Item item : items) {
-			String sample[] = {item.getType(),item.getCategories(),item.getName(),item.getTime()+"",item.getRating()+"",item.getActor(),item.getSummary()};
+			String sample[] = {item.getType(),item.getCategories(),item.getName(),item.getTime()+"",item.getRating()+"",item.getSummary()};
 			itemsData.add(sample);
 		}
 		int numnum = itemsData.size();
@@ -105,7 +102,6 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				String field = (String) jcb.getSelectedItem();
 				if(field.equals("제목")) Managers.sortingManager.mySort(Managers.managedList.itemList,1);
 				else if(field.equals("방영년도")) Managers.sortingManager.mySort(Managers.managedList.itemList,2);
@@ -127,8 +123,7 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 				if(word.equals(null)) {
 
 				}
-				else if(!word.equals(null)) {
-					//검색
+				else if(!word.equals(null)) {//검색
 					int index = 0;
 					for(Item item : Managers.managedList.itemList) {
 						if(item.match(word)) {
@@ -150,7 +145,7 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 	      ArrayList<Item> items = Managers.managedList.itemList;
 	      ArrayList<String[]> itemsData = new ArrayList<String[]>();
 	      for(Item item : items) {
-	         String sample[] = {item.getType(),item.getCategories(),item.getName(),item.getTime()+"",item.getRating()+"",item.getActor(),item.getSummary()};
+	         String sample[] = {item.getType(),item.getCategories(),item.getName(),item.getTime()+"",item.getRating()+"",item.getSummary()};
 	         itemsData.add(sample);
 	      }
 	      String contents[][] = new String[itemsData.size()][];
@@ -164,10 +159,7 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 	      }
 	   }
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
-	}
+	public void actionPerformed(ActionEvent e) {}
 }
 
 class JPanel033 extends JPanel {
@@ -178,17 +170,10 @@ class JPanel033 extends JPanel {
 		// JTable table = new JTable();
 		ImageIcon images = new ImageIcon("./NoRecommand.png");
 		Image im = images.getImage(); // 뽑아온 이미지 객체 사이즈를 새롭게 만들기!
-
 		Image im2 = im.getScaledInstance(230, 230, Image.SCALE_SMOOTH);
-
-		// 새로 조절된 사이즈의 이미지(im2)를 가지는 ImageIcon 객체를 다시 생성
 
 		ImageIcon icon2 = new ImageIcon(im2);
 		bt_img = new JButton(icon2);
-		// bt_img.setPreferredSize(new Dimension(300, 10));
-
-		// JLabel img = new JLabel(icon2);
-		// img.setLocation(100,60);
 		bt_img.setSize(400, 400);
 		bt_img.setLocation(220, 50);
 		bt_img.setBorderPainted(false);
@@ -210,7 +195,8 @@ class JPanel033 extends JPanel {
 		add(nextRecom);
 		// 이벤트 처리하기
 
-		// if 시청기록 없을 경우
+		// if 시청기록 없을 경우 
+		// if(!RecommendManager.existRecommendItem)
 		JLabel label = new JLabel("추천드릴 콘텐츠가 없어요    :(");
 		label.setLocation(330, 400);
 		label.setSize(200, 20);
@@ -260,7 +246,6 @@ public class MainGUI extends JFrame {
 		setBackground(Color.black);
 		setSize(900, 650);
 		addWindowListener(new WindowAdapter() {
-
 			@Override
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
@@ -272,49 +257,12 @@ public class MainGUI extends JFrame {
 	public void runFrame() {
 		setVisible(true);
 	}
-	/*
-	 * public static void setJComboBoxStyle(JComboBox combo) {
-	 * combo.setBackground(Color.LIGHT_GRAY); //TODO 백그라운드 색상 정의
-	 * combo.setForeground(Color.WHITE); //TODO 텍스트 색상 정의 combo.setFont(new
-	 * Font("맑은 고딕", 0, 15)); //TODO 폰트 정의 }
-	 */
 
 	public static void setJButtonStyle(JButton btn) {
-		btn.setBackground(Color.DARK_GRAY); // TODO 백그라운드 색상 정의
-		btn.setForeground(Color.WHITE); // TODO 텍스트 색상 정의
-		btn.setFont(new Font("맑은 고딕", 0, 15)); // TODO 폰트 정의
-		btn.setHorizontalAlignment(JLabel.CENTER); // TODO 텍스트 센터 표시 설정
+		btn.setBackground(Color.DARK_GRAY);
+		btn.setForeground(Color.WHITE); 
+		btn.setFont(new Font("맑은 고딕", 0, 15)); 
+		btn.setHorizontalAlignment(JLabel.CENTER); 
 	}
-
-	/*
-	 * @Override public void windowClosed(WindowEvent e) {
-	 * System.out.println("Process done");
-	 * Managers.menuManger.changeMenuState("END");
-	 * System.out.println("Process done"); }
-	 */
-
 }
 
-/*
- * 정렬부분 원래 코드 String header[]= {"종류", "장르", "제목","방영년도", "평점", "출연진", "줄거리"};
- * String contents[][]= {{"Animation", "SF, FANTASY", "귀멸의 칼날", "2020",
- * "3.7","null", "탄지로 젠이츠 ~~"}, {"Movie", "THRILLER,COMEDY", "기생충", "2019",
- * "4.4", "송강호, 이선균", "반지하 ~~"} }; DefaultTableModel model = new
- * DefaultTableModel(contents, header); JTable table = new JTable(model);
- * JScrollPane scrollpane = new JScrollPane(table);
- * scrollpane.setLocation(20,20); scrollpane.setSize(520,460); add(scrollpane);
- * JButton jButton1 = new JButton("오래된 순"); jButton1.setSize(130,20);
- * jButton1.setLocation(560,20); //이벤트 처리 해야함 add(jButton1);
- * 
- * JButton jButton2 = new JButton("최신 순"); jButton2.setSize(130,20);
- * jButton2.setLocation(560,60); add(jButton2);
- * 
- * JButton jButton3 = new JButton("가나다 순(제목)"); jButton3.setSize(130,20);
- * jButton3.setLocation(560,100); add(jButton3);
- * 
- * JButton jButton4 = new JButton("평점 높은 순"); jButton4.setSize(130,20);
- * jButton4.setLocation(560,140); add(jButton4);
- * 
- * JButton jButton5 = new JButton("평점 낮은 순"); jButton5.setSize(130,20);
- * jButton5.setLocation(560,180); add(jButton5);
- */

@@ -31,7 +31,7 @@ import UserManagement.UserManager;
 
 import javax.swing.SwingWorker;
 
-public class LoginFrame extends JFrame implements MyFrame {
+public class LoginFrame extends JFrame{
 
 	private JPanel lPanel;
 	private JLabel lLogin, lId, lPassword;
@@ -121,12 +121,11 @@ public class LoginFrame extends JFrame implements MyFrame {
 				try {
 					if (Managers.nowUser != null && !Managers.nowUser.userId.equals("song")) {
 						JOptionPane.showMessageDialog(null, "로그인 완료");
-	    				Managers.menuManger.changeMenuState("MAIN");
-	    				MainGUI masd = new MainGUI ();
+						MainGUI mainGUI = new MainGUI();
 						dispose();
 					} else if (Managers.nowUser.userId.equals("song")) {
 						JOptionPane.showMessageDialog(null, "어드민 로그인 완료");
-						Managers.menuManger.adminMenu();
+						Managers.menuManager.adminMenu();
 						dispose();
 					}
 				}
@@ -146,7 +145,6 @@ public class LoginFrame extends JFrame implements MyFrame {
 		exitButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Managers.menuManger.changeMenuState("END");
 				System.exit(0); 
 			}
 		});

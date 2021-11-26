@@ -17,12 +17,12 @@ public class ServiceManager {
 		readDatas();
 		readUsers();
 		readReviews();
-		Managers.menuManger.init(scan);
+		Managers.menuManager.init(scan);
 		Managers.userManager.init(scan);
 	}
 	
 	public void run() {
-		Managers.menuManger.menuRun();
+		Managers.menuManager.menuRun();
 	}
 	
 	private void readDatas() {

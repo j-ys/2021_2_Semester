@@ -28,29 +28,9 @@ public class MenuManager {
 		guiManager.init();
 	}
 
-	// menu system
-	private enum MenuState {
-		NONE, MAIN, LOGIN, ADMIN, END
-	}
-
-	private MenuState menuState = MenuState.NONE;// plz modify to NONE
-
-	public void changeMenuState(String nextMenu) {
-		menuState = MenuState.valueOf(nextMenu);
-	}
-
 	public void menuRun() {
 		System.out.println("Menu Run start");
-		menuState = MenuState.LOGIN;
 		loginMenu();
-		if (menuState == MenuState.MAIN) {
-			mainMenu();
-		} else if (menuState == MenuState.ADMIN) {
-			adminMenu();
-		}
-
-		menuState = MenuState.END;
-
 	}
 
 	// User Menus

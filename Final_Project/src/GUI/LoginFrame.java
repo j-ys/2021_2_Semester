@@ -118,18 +118,20 @@ public class LoginFrame extends JFrame implements MyFrame {
 			public void actionPerformed(ActionEvent e) {
 				String id = tId.getText();
 				String password = tPassword.getText();
-				User u1 = new User();
-				String result = u1.memberLogin(id, password);
-				if (result != null && !result.equals("song")) {
-					JOptionPane.showMessageDialog(null, "로그인 완료");
-    				Managers.menuManger.changeMenuState("MAIN");
-    				MainGUI masd = new MainGUI ();
-					dispose();
-				} else if (result.equals("song")) {
-					JOptionPane.showMessageDialog(null, "어드민 로그인 완료");
-					Managers.menuManger.adminMenu();
-					dispose();
-				} else {
+				String result = Managers.userManager.login(id, password);
+				try {
+					if (result != null && !result.equals("song")) {
+						JOptionPane.showMessageDialog(null, "로그인 완료");
+	    				Managers.menuManger.changeMenuState("MAIN");
+	    				MainGUI masd = new MainGUI ();
+						dispose();
+					} else if (result.equals("song")) {
+						JOptionPane.showMessageDialog(null, "어드민 로그인 완료");
+						Managers.menuManger.adminMenu();
+						dispose();
+					}
+				}
+				catch(NullPointerException e1) {
 					JOptionPane.showMessageDialog(null, "로그인 실패");
 				}
 			}

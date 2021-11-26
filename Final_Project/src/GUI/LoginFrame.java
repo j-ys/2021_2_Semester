@@ -51,7 +51,6 @@ public class LoginFrame extends JFrame implements MyFrame {
 		setSize(350, 400);
 		setLocationRelativeTo(null);
 		
-		
 		ImageIcon icon = new ImageIcon("nut.png");
 		JPanel background = new JPanel() {
 			public void paintComponent(Graphics g) {

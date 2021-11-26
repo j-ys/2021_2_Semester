@@ -18,6 +18,7 @@ public class Review{
 	public void print() {
 		System.out.printf("%s - %s : [%.1f] %s\n", userId, itemName, grade, content);
 	}
+	
 	public boolean match(String id, String name) {
 		if (userId.equals(id)) {
 			if(name.equals(name)) {

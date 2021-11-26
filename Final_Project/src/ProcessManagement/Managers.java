@@ -2,6 +2,7 @@ package ProcessManagement;
 
 import FileSystem.FileManager;
 import Service.ServiceManager;
+import UserManagement.UserManager;
 import Service.ManagedList;
 import Service.MenuManager;
 
@@ -11,4 +12,5 @@ public class Managers {
 	public static FileManager fileManager = new FileManager();	
 	public static MenuManager menuManger = new MenuManager();
 	public static ManagedList managedList = new ManagedList();
+	public static UserManager userManager = new UserManager();
 }

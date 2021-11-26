@@ -13,4 +13,5 @@ public class Managers {
 	public static MenuManager menuManger = new MenuManager();
 	public static ManagedList managedList = new ManagedList();
 	public static UserManager userManager = new UserManager();
+	public static User nowUser = new User();
 }

@@ -118,14 +118,14 @@ public class LoginFrame extends JFrame implements MyFrame {
 			public void actionPerformed(ActionEvent e) {
 				String id = tId.getText();
 				String password = tPassword.getText();
-				String result = Managers.userManager.login(id, password);
+				Managers.nowUser = Managers.userManager.login(id, password);
 				try {
-					if (result != null && !result.equals("song")) {
+					if (Managers.nowUser != null && !Managers.nowUser.userId.equals("song")) {
 						JOptionPane.showMessageDialog(null, "로그인 완료");
 	    				Managers.menuManger.changeMenuState("MAIN");
 	    				MainGUI masd = new MainGUI ();
 						dispose();
-					} else if (result.equals("song")) {
+					} else if (Managers.nowUser.userId.equals("song")) {
 						JOptionPane.showMessageDialog(null, "어드민 로그인 완료");
 						Managers.menuManger.adminMenu();
 						dispose();

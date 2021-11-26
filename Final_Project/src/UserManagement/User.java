@@ -1,6 +1,8 @@
 package UserManagement;
 import java.util.Scanner;
 
+import ProcessManagement.Managers;
+
 public class User{
 	public String userId;
 	public String pw;

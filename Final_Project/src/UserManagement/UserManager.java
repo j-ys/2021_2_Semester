@@ -6,23 +6,22 @@ import ProcessManagement.Managers;
 
 
 public class UserManager {
-	public UserManager(Scanner scan) {	
-		this.scan = scan;
+	public UserManager() {	
 	}
 	private Scanner scan;
 	
-	public User login() {
-		System.out.print("user id: ");
-		String id = scan.next();
-		System.out.print("password: ");
-		String pw = scan.next();
+	public void init(Scanner scan) {
+		this.scan = scan;
+	}
+	
+	public String login(String id, String pw) {
 		User user = find(id);
 		
 		if(user == null || !user.pw.equals(pw)) {
 	    	System.out.println("아이디 또는 비밀번호가 일치하지 않습니다.");
 	    	return null;
 		}
-		return user;
+		return user.userId;
 	}
 	
 	public User withDrawal(User user) {
@@ -62,7 +61,7 @@ public class UserManager {
 		User user = find(id);
 		User newUser = new User();
 		if(user != null) {
-	    	System.out.println("동일한 아이디가 존재합니다.\n");
+	    	System.out.println("동일한 아이디가 존재합니다.\\n");
 		}
 		else if(pw == null) {
 			newUser.userId = id;

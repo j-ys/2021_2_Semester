@@ -61,18 +61,18 @@ public class MenuManager {
 	private void reviewMenu() {
 		String id = nowUser.userId;
 		int exist = 0;
-		String name = "�삤吏뺤뼱寃뚯엫";
+		String name = "오징어게임";
 		for (Review rev : Managers.managedList.reviewList) {
 			if (rev.match(id, name)) {
 				exist = 1;
 			}
 		}
 		if (exist == 1) {
-			System.out.println("�씠誘� 由щ럭瑜� �궓湲곗뀲�뒿�땲�떎.");
+			System.out.println("이미 리뷰를 남기셨습니다.");
 		} else if (exist == 0) {
-			System.out.print("�룊�젏: ");
+			System.out.print("평점: ");
 			float grade = scan.nextFloat();
-			System.out.print("媛꾨떒�븳 由щ럭瑜� �뜥二쇱꽭�슂.: ");
+			System.out.print("간단한 리뷰를 써주세요.: ");
 			String review = scan.nextLine();
 			Review newReview = new Review();
 			newReview.userId = id;
@@ -89,7 +89,7 @@ public class MenuManager {
 	}
 
 	// Admin Menus
-	public void adminMenu() { // �궫�엯 �궘�젣 �닔�젙
+	public void adminMenu() { // 삽입 삭제 
 		boolean done = false;
 		int input = 0;
 		System.out.println("****Admin mode on****");

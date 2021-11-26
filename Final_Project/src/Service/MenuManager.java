@@ -16,14 +16,11 @@ import UserManagement.User;
 import UserManagement.UserManager;
 
 public class MenuManager {
-	public MenuManager() {
-
-	}
 
 	private Scanner scan;
-	private User nowUser;
 	private GUIManager guiManager;
-
+	private User nowUser = Managers.nowUser;
+	
 	public void init(Scanner scan) {
 		this.scan = scan;
 		nowUser = new User();
@@ -63,7 +60,6 @@ public class MenuManager {
 
 	private void reviewMenu() {
 		String id = nowUser.userId;
-		id = "kkk";
 		int exist = 0;
 		String name = "�삤吏뺤뼱寃뚯엫";
 		for (Review rev : Managers.managedList.reviewList) {

@@ -78,7 +78,10 @@ public class SignUpFrame extends JFrame implements MyFrame{
 				//Manage mdao = Manage.getInstance();
 				//int result = mdao.insertMember(mdto);
 				
-				int result =1;
+				String id = tId.getText();
+				String pw = tPassword.getText();
+				int result = Managers.userManager.signUp(id, pw);
+				
 				if (result == 1) {
 					JOptionPane.showMessageDialog(null, "회원등록 완료");
 					dispose();

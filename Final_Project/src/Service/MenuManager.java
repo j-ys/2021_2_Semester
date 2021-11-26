@@ -80,7 +80,7 @@ public class MenuManager {
 			String review = scan.nextLine();
 			Review newReview = new Review();
 			newReview.userId = id;
-			newReview.name = name;
+			newReview.itemName = name;
 			newReview.grade = grade;
 			newReview.content = review;
 			Managers.managedList.reviewList.add(newReview);

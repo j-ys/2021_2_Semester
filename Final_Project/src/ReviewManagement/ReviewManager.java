@@ -33,7 +33,7 @@ public class ReviewManager {
 			String review = scan.nextLine();
 			Review newReview = new Review();
 			newReview.userId = id;
-			newReview.name = name;
+			newReview.itemName = name;
 			newReview.grade = grade;
 			newReview.content = review;
 	        reviewList.add(newReview);

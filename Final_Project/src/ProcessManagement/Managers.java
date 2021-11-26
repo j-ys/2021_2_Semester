@@ -2,6 +2,7 @@ package ProcessManagement;
 
 import FileSystem.FileManager;
 import Service.ServiceManager;
+import UserManagement.User;
 import UserManagement.UserManager;
 import Service.ManagedList;
 import Service.MenuManager;

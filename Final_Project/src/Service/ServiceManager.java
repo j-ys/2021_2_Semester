@@ -18,6 +18,7 @@ public class ServiceManager {
 		readUsers();
 		readReviews();
 		Managers.menuManger.init(scan);
+		Managers.userManager.init(scan);
 	}
 	
 	public void run() {
@@ -38,8 +39,8 @@ public class ServiceManager {
 	
 	public void readUsers() {
 		Scanner file = Managers.fileManager.openFile("users.txt");
-		User nowUser = new User();
 		while(file.hasNext()){
+			User nowUser = new User();
 			nowUser.read(file);
 			nowUser.print();
 			Managers.managedList.userList.add(nowUser);
@@ -48,8 +49,8 @@ public class ServiceManager {
 	
 	public void readReviews() {
 		Scanner file = Managers.fileManager.openFile("reviews.txt");
-		Review review = new Review();
 		while(file.hasNext()){
+			Review review = new Review();
 			review.read(file);
 			review.print();
 			Managers.managedList.reviewList.add(review);

@@ -55,7 +55,7 @@ public class LoginFrame extends JFrame implements MyFrame {
 		JPanel background = new JPanel() {
 			public void paintComponent(Graphics g) {
 				g.drawImage(icon.getImage(), 0, 0, null);
-				setOpaque(false); // 占쌓몌옙占쏙옙 표占쏙옙占싹곤옙 占쏙옙占쏙옙,占쏙옙占쏙옙占싹곤옙 占쏙옙占쏙옙
+				setOpaque(false); 
 				super.paintComponent(g);
 			}
 		};

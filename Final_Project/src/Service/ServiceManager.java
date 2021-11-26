@@ -42,7 +42,6 @@ public class ServiceManager {
 		while(file.hasNext()){
 			User nowUser = new User();
 			nowUser.read(file);
-			nowUser.print();
 			Managers.managedList.userList.add(nowUser);
 		}
 	}
@@ -52,7 +51,6 @@ public class ServiceManager {
 		while(file.hasNext()){
 			Review review = new Review();
 			review.read(file);
-			review.print();
 			Managers.managedList.reviewList.add(review);
 		}
 	}

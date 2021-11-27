@@ -87,6 +87,10 @@ public abstract class Item {//Our Manageable
 		return false;
 	}
 	
+	public ArrayList<Category> getCategory(){
+		return category;
+	}
+	
 	public String getName() {
 		return name;	
 	}

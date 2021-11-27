@@ -7,6 +7,7 @@ import UserManagement.User;
 import UserManagement.UserManager;
 import Service.ManagedList;
 import Service.MenuManager;
+import Service.RecommendManager;
 
 //Global singleton managers
 public class Managers {
@@ -16,5 +17,6 @@ public class Managers {
 	public static ManagedList managedList = new ManagedList();
 	public static UserManager userManager = new UserManager();
 	public static SortingManager sortingManager = new SortingManager();
+	public static RecommendManager recommendManager = new RecommendManager();
 	public static User nowUser = new User();
 }

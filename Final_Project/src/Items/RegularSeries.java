@@ -24,7 +24,7 @@ public class RegularSeries extends Item{
 		for(String str : mainActor){
 			mainActors.add(str);
 		}
-		imagePath = "./images"+scan.next();		
+		imagePath = "./images/"+scan.next();		
 		summary = scan.nextLine();
 	}
 

@@ -17,7 +17,7 @@ public class Animation extends Item{
 		time = scan.nextInt();
 		grade = scan.nextFloat();
 		rating = scan.nextInt();
-		imagePath = "./images"+scan.next();
+		imagePath = "./images/"+scan.next();
 		summary = scan.nextLine();
 	}
 	

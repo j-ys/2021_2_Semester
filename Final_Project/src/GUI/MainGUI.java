@@ -3,9 +3,9 @@ package GUI;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-
 import ProcessManagement.Managers;
-
+import javax.swing.JScrollPane;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -21,54 +21,65 @@ class JPanel011 extends JPanel { // 1번 패널
 
 	public JPanel011() { // 1번째 패널 생성자
 		JPanel jp_label = new JPanel();
-	      JScrollPane scrollpane = new JScrollPane(jp_label, ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-	      scrollpane.setLocation(100, 60);
-	      scrollpane.setPreferredSize(new Dimension(900, 650));
 
-	      add(scrollpane);
-	      String[] title = { "겨울왕국", "귀멸의칼날", "라푼젤" };
-	         JLabel jLabel[] = new JLabel[title.length];
-	         ImageIcon icon[] = new ImageIcon[title.length];
-	         
-	         JButton bt[] = new JButton[title.length];
-	         JScrollPane scroll;
-	         scroll = new JScrollPane();  // 스크롤패널을 선언
-	         scroll.setBounds(0,0,160,160);
-	         
-	         for (int i = 0; i < title.length; i++) {            
-	            bt[i] = new JButton(title[i]);
-	            if (i < 4) {
-	               bt[i].setBounds(25 + i * 150, 50, 100, 100);
-	            } else {
-	               bt[i].setBounds(25 + (i - 4) * 150, 300, 100, 100);
-	            }
-	            icon[i] = new ImageIcon("./images/Animation/"+title[i]+".png");
-	            bt[i].setIcon(icon[i]);
-	            Image im = icon[i].getImage();
-	            Image im2 = im.getScaledInstance(50, 200, Image.SCALE_SMOOTH);
-	            //ImageIcon[] icon2= new ImageIcon(im2);
-	            jLabel[i] = new JLabel(title[i]);
-	            add(bt[i]);
-	         }    
-	   }
+		JToggleButton btns[] = new JToggleButton[Managers.managedList.itemList.size()];
+		
+		for (int i = 0; i < Managers.managedList.itemList.size(); i++) {
+			Item nowItem = Managers.managedList.itemList.get(i);
+			btns[i] = makeImageButton(nowItem.getImagePath(),nowItem.getName());
+			if (i < 4) {
+				btns[i].setBounds(25 + i * 150, 50, 100, 100);
+			} else {
+				btns[i].setBounds(25 + (i - 4) * 150, 300, 100, 100);
+			}
+			add(btns[i]);
+		}
+		
 	}
+	static boolean isSelectedOrder = false;
+	static int nowContentNumber = -1;
+	private JToggleButton makeImageButton(String imagePath,String buttonName) {
+		ImageIcon image = new ImageIcon(imagePath);
+		Image image2 = image.getImage();
+		Image i4 = image2.getScaledInstance(160, 250, java.awt.Image.SCALE_SMOOTH);
+		ImageIcon i5 = new ImageIcon(i4);
+		
+		JToggleButton b = new JToggleButton(buttonName, i5);
+		b.setHorizontalTextPosition(SwingConstants.CENTER);
+		b.setVerticalTextPosition(SwingConstants.BOTTOM);
+		b.setBorderPainted(false);
+		b.setFocusPainted(false);
+		b.setBackground(Color.white);
+		b.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent ev) {
+				if (ev.getStateChange() == ItemEvent.SELECTED) {
+					Managers.recommendManager.addInterestItem(b.getLabel());
+				} else if (ev.getStateChange() == ItemEvent.DESELECTED) {
 
+					//isSelectedOrder = false;
+				}
+			}
+		});
+		return b;
+	}
+}
 
 class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 	public JPanel022() { // 2번째 패널 생성자
 		ArrayList<Item> items = Managers.managedList.itemList;
-		String header[] = { "종류", "장르", "제목", "방영년도", "평점","시청등급", "줄거리" };
-		
+		String header[] = { "종류", "장르", "제목", "방영년도", "평점", "시청등급", "줄거리" };
+
 		ArrayList<String[]> itemsData = new ArrayList<String[]>();
-		for(Item item : items) {
+		for (Item item : items) {
 			String sample[] = { item.getType(), item.getCategories(), item.getName(), item.getTime() + "",
-								item.getGrade() + "", item.getRating() + "", item.getSummary() };
+					item.getGrade() + "", item.getRating() + "", item.getSummary() };
 			itemsData.add(sample);
 		}
 		String contents[][] = new String[itemsData.size()][];
 		int index = 0;
-		for(String[] itemData : itemsData) {
+		for (String[] itemData : itemsData) {
 			contents[index++] = itemData;
 		}
 		DefaultTableModel model = new DefaultTableModel(contents, header);
@@ -92,7 +103,7 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 		sbutton.addActionListener(this);
 
 		JComboBox<String> combo;
-		String[] cbdata = {"제목", "방영년도", "평점"};
+		String[] cbdata = { "제목", "방영년도", "평점" };
 
 		JComboBox<String> jcb = new JComboBox<String>(cbdata);
 		jcb.setLocation(20, 20);
@@ -104,64 +115,65 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String field = (String) jcb.getSelectedItem();
-				if(field.equals("제목")) {
-					Managers.sortingManager.mySort(Managers.managedList.itemList,1);
-				}
-				else if(field.equals("방영년도")) { 
-					Managers.sortingManager.mySort(Managers.managedList.itemList,2);
-				}
-				else if(field.equals("평점")) { 
-					Managers.sortingManager.mySort(Managers.managedList.itemList,3);
-				}
-				else {
+				if (field.equals("제목")) {
+					Managers.sortingManager.mySort(Managers.managedList.itemList, 1);
+				} else if (field.equals("방영년도")) {
+					Managers.sortingManager.mySort(Managers.managedList.itemList, 2);
+				} else if (field.equals("평점")) {
+					Managers.sortingManager.mySort(Managers.managedList.itemList, 3);
+				} else {
 					return;
 				}
 				tableModelUpdate(model);
 			}
-			
+
 		});
-		
+
 		sbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String field = (String) jcb.getSelectedItem();
-				String word = sText.getText();			
-				if(!word.equals(null)) {//검색
+				String word = sText.getText();
+				if (!word.equals(null)) {// 검색
 					int index = 0;
-					for(Item item : Managers.managedList.itemList) {
-						if(item.match(word)) {
+					for (Item item : Managers.managedList.itemList) {
+						if (item.match(word)) {
 							item.print();
 						}
 					}
 				}
 			}
-			
+
 		});
 
 	}
+
 	void tableModelUpdate(DefaultTableModel model) {
-	      int rowCnt = model.getRowCount();
-	      for(int i=0;i<rowCnt;i++) {
-	         model.removeRow(0);
-	      }
-	      
-	      ArrayList<Item> items = Managers.managedList.itemList;
-	      ArrayList<String[]> itemsData = new ArrayList<String[]>();
-	      for(Item item : items) {
-	         String sample[] = {item.getType(),item.getCategories(),item.getName(),item.getTime()+"",item.getRating()+"",item.getSummary()};
-	         itemsData.add(sample);
-	      }
-	      String contents[][] = new String[itemsData.size()][];
-	      int index = 0;
-	      for(String[] itemData : itemsData) {
-	         contents[index++] = itemData;
-	      }
-	      
-	      for(int i=0;i<contents.length;i++) {
-	         model.addRow(contents[i]);
-	      }
-	   }
+		int rowCnt = model.getRowCount();
+		for (int i = 0; i < rowCnt; i++) {
+			model.removeRow(0);
+		}
+
+		ArrayList<Item> items = Managers.managedList.itemList;
+		ArrayList<String[]> itemsData = new ArrayList<String[]>();
+		for (Item item : items) {
+			String sample[] = { item.getType(), item.getCategories(), item.getName(), item.getTime() + "",
+					item.getRating() + "", item.getSummary() };
+			itemsData.add(sample);
+		}
+		String contents[][] = new String[itemsData.size()][];
+		int index = 0;
+		for (String[] itemData : itemsData) {
+			contents[index++] = itemData;
+		}
+
+		for (int i = 0; i < contents.length; i++) {
+			model.addRow(contents[i]);
+		}
+	}
+
 	@Override
-	public void actionPerformed(ActionEvent e) {}
+	public void actionPerformed(ActionEvent e) {
+	}
 }
 
 class JPanel033 extends JPanel {
@@ -197,12 +209,16 @@ class JPanel033 extends JPanel {
 		add(nextRecom);
 		// 이벤트 처리하기
 
-		// if 시청기록 없을 경우 
-		// if(!RecommendManager.existRecommendItem)
-		JLabel label = new JLabel("추천드릴 콘텐츠가 없어요    :(");
-		label.setLocation(330, 400);
-		label.setSize(200, 20);
-		add(label);
+		// if 시청기록 없을 경우
+		if(!Managers.recommendManager.existRecommendItem()) {
+			JLabel label = new JLabel("추천드릴 콘텐츠가 없어요    :(");
+			label.setLocation(330, 400);
+			label.setSize(200, 20);
+			add(label);
+		}
+		else {
+			
+		}
 
 		/*
 		 * else 시청기록 있을 경우
@@ -215,12 +231,14 @@ class JPanel044 extends JPanel {// 리뷰 Panel
 
 }
 
+
 public class MainGUI extends JFrame {
 	public JPanel011 jpanel01 = null;
 	public JPanel022 jpanel02 = null;
 	public JPanel033 jpanel03 = null;
 	public JPanel044 jpanel04 = null;
-
+	final static int GUI_WIDTH = 900;
+	final static int GUI_HEIGHT = 650;
 	public MainGUI() {
 		init();
 		runFrame();
@@ -246,13 +264,12 @@ public class MainGUI extends JFrame {
 		setLocation(400, 100);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBackground(Color.black);
-		setSize(900, 650);
+		setSize(GUI_WIDTH, GUI_HEIGHT);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
-
 		});
 	}
 
@@ -262,9 +279,8 @@ public class MainGUI extends JFrame {
 
 	public static void setJButtonStyle(JButton btn) {
 		btn.setBackground(Color.DARK_GRAY);
-		btn.setForeground(Color.WHITE); 
-		btn.setFont(new Font("맑은 고딕", 0, 15)); 
-		btn.setHorizontalAlignment(JLabel.CENTER); 
+		btn.setForeground(Color.WHITE);
+		btn.setFont(new Font("맑은 고딕", 0, 15));
+		btn.setHorizontalAlignment(JLabel.CENTER);
 	}
 }
-

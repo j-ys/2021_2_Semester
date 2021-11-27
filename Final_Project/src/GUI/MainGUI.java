@@ -26,12 +26,11 @@ class JPanel011 extends JPanel { // 1번 패널
 	public JPanel011() { // 1번째 패널 생성자
 		JPanel jp_label = new JPanel();
 
-
 		JToggleButton btns[] = new JToggleButton[Managers.managedList.itemList.size()];
-		
+
 		for (int i = 0; i < Managers.managedList.itemList.size(); i++) {
 			Item nowItem = Managers.managedList.itemList.get(i);
-			btns[i] = makeImageButton(nowItem.getImagePath(),nowItem.getName());
+			btns[i] = makeImageButton(nowItem.getImagePath(), nowItem.getName());
 			if (i < 4) {
 				btns[i].setBounds(25 + i * 150, 50, 100, 100);
 			} else {
@@ -39,15 +38,17 @@ class JPanel011 extends JPanel { // 1번 패널
 			}
 			add(btns[i]);
 		}
-		
+
 	}
+
 	static int nowContentNumber = -1;
-	private JToggleButton makeImageButton(String imagePath,String buttonName) {
+
+	private JToggleButton makeImageButton(String imagePath, String buttonName) {
 		ImageIcon image = new ImageIcon(imagePath);
 		Image image2 = image.getImage();
 		Image i4 = image2.getScaledInstance(160, 250, java.awt.Image.SCALE_SMOOTH);
 		ImageIcon i5 = new ImageIcon(i4);
-		
+
 		JToggleButton b = new JToggleButton(buttonName, i5);
 		b.setHorizontalTextPosition(SwingConstants.CENTER);
 		b.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -61,7 +62,7 @@ class JPanel011 extends JPanel { // 1번 패널
 					Managers.recommendManager.addInterestItem(b.getLabel());
 				} else if (ev.getStateChange() == ItemEvent.DESELECTED) {
 
-					//isSelectedOrder = false;
+					// isSelectedOrder = false;
 				}
 			}
 		});
@@ -136,13 +137,32 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 			public void actionPerformed(ActionEvent e) {
 				String field = (String) jcb.getSelectedItem();
 				String word = sText.getText();
-				if (!word.equals(null)) {// 검색
-					int index = 0;
+				ArrayList<String[]> searchData = new ArrayList<String[]>();
+
+				if (!word.equals(null)) {
+					// 검색
+					tableModelUpdate(model);
+					DefaultTableModel m1 = new DefaultTableModel();
 					for (Item item : Managers.managedList.itemList) {
 						if (item.match(word)) {
+							String sample[] = { item.getType(), item.getCategories(), item.getName(),
+									item.getTime() + "", item.getRating() + "", item.getGrade()+"",item.getSummary() };
+							searchData.add(sample);
 							item.print();
 						}
 					}
+					int num = searchData.size();
+					String contents1[][] = new String[num][];
+					int index = 0;
+					for (String[] itemsss : searchData) {
+						contents1[index++] = itemsss;
+					}
+					DefaultTableModel model1 = new DefaultTableModel(contents1, header);
+					JTable table1 = new JTable(model1);
+					JScrollPane scrollpane1 = new JScrollPane(table1);
+					add(scrollpane1);
+					JOptionPane.showMessageDialog(null, scrollpane1, "Result", -1);
+
 				}
 			}
 
@@ -181,54 +201,43 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 
 class JPanel033 extends JPanel {
 	public JPanel033() {
-		//setLayout(null);
+		// setLayout(null);
 		JButton bt_img;
 
 		// JTable table = new JTable();
 		/*
-		ImageIcon images = new ImageIcon("./NoRecommand.png");
-		Image im = images.getImage(); // 뽑아온 이미지 객체 사이즈를 새롭게 만들기!
-		Image im2 = im.getScaledInstance(230, 230, Image.SCALE_SMOOTH);
-
-		ImageIcon icon2 = new ImageIcon(im2);
-		bt_img = new JButton(icon2);
-		bt_img.setSize(400, 400);
-		bt_img.setLocation(220, 50);
-		bt_img.setBorderPainted(false);
-		bt_img.setFocusPainted(false);
-		bt_img.setContentAreaFilled(false);
-		add(bt_img);
-
-		JButton nextRecom;
-		ImageIcon next = new ImageIcon("./NextRecommand.png");
-		Image nextim = next.getImage();
-		Image im3 = nextim.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-		ImageIcon icon3 = new ImageIcon(im3);
-		nextRecom = new JButton(icon3);
-		nextRecom.setSize(400, 400);
-		nextRecom.setLocation(500, 50);
-		nextRecom.setBorderPainted(false);
-		// nextRecom.setFocusPainted(false);
-		nextRecom.setContentAreaFilled(false);
-		add(nextRecom);*/
+		 * ImageIcon images = new ImageIcon("./NoRecommand.png"); Image im =
+		 * images.getImage(); // 뽑아온 이미지 객체 사이즈를 새롭게 만들기! Image im2 =
+		 * im.getScaledInstance(230, 230, Image.SCALE_SMOOTH);
+		 * 
+		 * ImageIcon icon2 = new ImageIcon(im2); bt_img = new JButton(icon2);
+		 * bt_img.setSize(400, 400); bt_img.setLocation(220, 50);
+		 * bt_img.setBorderPainted(false); bt_img.setFocusPainted(false);
+		 * bt_img.setContentAreaFilled(false); add(bt_img);
+		 * 
+		 * JButton nextRecom; ImageIcon next = new ImageIcon("./NextRecommand.png");
+		 * Image nextim = next.getImage(); Image im3 = nextim.getScaledInstance(150,
+		 * 150, Image.SCALE_SMOOTH); ImageIcon icon3 = new ImageIcon(im3); nextRecom =
+		 * new JButton(icon3); nextRecom.setSize(400, 400); nextRecom.setLocation(500,
+		 * 50); nextRecom.setBorderPainted(false); // nextRecom.setFocusPainted(false);
+		 * nextRecom.setContentAreaFilled(false); add(nextRecom);
+		 */
 		// 이벤트 처리하기
 
 		// if 시청기록 없을 경우
-		if(!Managers.recommendManager.existRecommendItem()) {
-			//원래 아무것도 아면 안됨
+		if (!Managers.recommendManager.existRecommendItem()) {
+			// 원래 아무것도 아면 안됨
 			/*
-			JLabel label = new JLabel("추천드릴 콘텐츠가 없어요    :(");
-			label.setLocation(330, 400);
-			label.setSize(200, 20);
-			add(label);
-			*/
+			 * JLabel label = new JLabel("추천드릴 콘텐츠가 없어요    :("); label.setLocation(330,
+			 * 400); label.setSize(200, 20); add(label);
+			 */
 			///
 			List<Item> toShow = Managers.recommendManager.provideRecommendItems();
 			ImageIcon image = new ImageIcon("./images/Animation/겨울왕국.png");
 			Image image2 = image.getImage();
-			Image i4 = image2.getScaledInstance(320,500, java.awt.Image.SCALE_SMOOTH);
+			Image i4 = image2.getScaledInstance(320, 500, java.awt.Image.SCALE_SMOOTH);
 			ImageIcon i5 = new ImageIcon(i4);
-			
+
 			JToggleButton b = new JToggleButton("겨울왕국", i5);
 			b.setHorizontalTextPosition(SwingConstants.CENTER);
 			b.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -242,41 +251,36 @@ class JPanel033 extends JPanel {
 						System.out.print("씨발거");
 					} else if (ev.getStateChange() == ItemEvent.DESELECTED) {
 
-						//isSelectedOrder = false;
+						// isSelectedOrder = false;
 					}
 				}
 			});
 
 			JLabel label = new JLabel("텍스트를 입력하시오.");
 			JTextArea txt = new JTextArea();
-			add(txt,BorderLayout.CENTER);
-			add(b,BorderLayout.WEST);
+			add(txt, BorderLayout.CENTER);
+			add(b, BorderLayout.WEST);
 
-
-			
 			//
-		}
-		else {
+		} else {
 			/*
 			 * else 시청기록 있을 경우
 			 * 
-			 */	
-			
-			
-			
+			 */
+
 			List<Item> toShow = Managers.recommendManager.provideRecommendItems();
 			ImageIcon image = new ImageIcon(Managers.managedList.itemList.get(0).getImagePath());
 			Image image2 = image.getImage();
-			Image i4 = image2.getScaledInstance(400,700, java.awt.Image.SCALE_SMOOTH);
+			Image i4 = image2.getScaledInstance(400, 700, java.awt.Image.SCALE_SMOOTH);
 			ImageIcon i5 = new ImageIcon(i4);
-			
+
 			JToggleButton b = new JToggleButton(Managers.managedList.itemList.get(0).getName(), i5);
 			b.setHorizontalTextPosition(SwingConstants.LEFT);
 			b.setVerticalTextPosition(SwingConstants.BOTTOM);
 			b.setBorderPainted(false);
 			b.setFocusPainted(false);
 			b.setBackground(Color.white);
-			
+
 			b.addItemListener(new ItemListener() {
 				@Override
 				public void itemStateChanged(ItemEvent ev) {
@@ -284,15 +288,15 @@ class JPanel033 extends JPanel {
 						//
 					} else if (ev.getStateChange() == ItemEvent.DESELECTED) {
 
-						//isSelectedOrder = false;
+						// isSelectedOrder = false;
 					}
 				}
 			});
 			add(b);
-			for(Item item : toShow) {
-				//버튼 만들기
+			for (Item item : toShow) {
+				// 버튼 만들기
 			}
-		}		
+		}
 	}
 }
 
@@ -477,7 +481,6 @@ class JPanel044 extends JPanel {// 리뷰 Panel
 	}
 }
 
-
 public class MainGUI extends JFrame {
 	public JPanel011 jpanel01 = null;
 	public JPanel022 jpanel02 = null;
@@ -485,6 +488,7 @@ public class MainGUI extends JFrame {
 	public JPanel044 jpanel04 = null;
 	final static int GUI_WIDTH = 900;
 	final static int GUI_HEIGHT = 650;
+
 	public MainGUI() {
 		init();
 		runFrame();

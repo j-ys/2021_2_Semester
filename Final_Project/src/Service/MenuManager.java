@@ -65,7 +65,6 @@ public class MenuManager {
 
 	private void loginMenu() {
 		guiManager.runMenu("login");
-		// nowUser = userManager.login();
 	}
 
 	// Admin Menus

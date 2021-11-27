@@ -47,12 +47,7 @@ public class RecommendManager {
 			}
 			isDuplicate = false;
 		}
-		
-		updateRecommendItem();
-		for(Item i : recommendItems) {
-			i.print();
-		}
-		System.out.println();
+
 	}
 
 	public List<Item> provideRecommendItems() {
@@ -60,6 +55,13 @@ public class RecommendManager {
 		return recommendItems;
 	}
 
+	public Item provideRecommendItem() {
+		updateRecommendItem();
+		if(recommendItems.size()==0)
+			return null;
+		return recommendItems.get(0);
+	}
+	
 	private void updateRecommendItem() {
 		boolean passFlag = false;
 		for (Item.Category interestCategory : interestedCategory) {

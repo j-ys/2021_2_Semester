@@ -2,22 +2,35 @@ package ReviewManagement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Items.Item;
+import ProcessManagement.Managers;
+
 
 
 public class ReviewManager {
 
-	public ReviewManager(ArrayList<Review> reviewList, Scanner scan) {
-		this.reviewList = reviewList;
-		this.scan = scan;
+	public ReviewManager() {
 	}
 	private ArrayList<Review> reviewList;
 	private Scanner scan;
+		
+	public void init(Scanner scan) {
+		this.scan = scan;
+	}
 	
 	public Review find(String id, String name) {
 		for (Review m: reviewList) {
 			if(m.match(id, name))
 				return m;
 		}
+		return null;
+	}
+	
+	public Review findByName(String itemName) {
+		/*for(Item item : Managers.managedList.itemList) {
+			if(item.getName().equals(itemName))
+				return item;
+		}*/
 		return null;
 	}
 	

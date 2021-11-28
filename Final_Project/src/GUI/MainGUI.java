@@ -248,7 +248,6 @@ class JPanel033 extends JPanel {
 				@Override
 				public void itemStateChanged(ItemEvent ev) {
 					if (ev.getStateChange() == ItemEvent.SELECTED) {
-						System.out.print("씨발거");
 					} else if (ev.getStateChange() == ItemEvent.DESELECTED) {
 
 						// isSelectedOrder = false;

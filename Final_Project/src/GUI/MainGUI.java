@@ -40,7 +40,7 @@ class JPanel011 extends JPanel { // 1번 패널
 		}
 
 	}
-
+	
 	static int nowContentNumber = -1;
 
 	private JToggleButton makeImageButton(String imagePath, String buttonName) {
@@ -201,7 +201,7 @@ class JPanel022 extends JPanel implements ActionListener { // 2번째 패널
 
 class JPanel033 extends JPanel {
 	public JPanel033() {
-		// setLayout(null);
+		setLayout(null);
 		JButton bt_img;
 
 		// JTable table = new JTable();
@@ -237,13 +237,55 @@ class JPanel033 extends JPanel {
 			Image image2 = image.getImage();
 			Image i4 = image2.getScaledInstance(320, 500, java.awt.Image.SCALE_SMOOTH);
 			ImageIcon i5 = new ImageIcon(i4);
+			
 
 			JToggleButton b = new JToggleButton("겨울왕국", i5);
+			b.setBounds(50,20,330,550);
 			b.setHorizontalTextPosition(SwingConstants.CENTER);
 			b.setVerticalTextPosition(SwingConstants.BOTTOM);
 			b.setBorderPainted(false);
 			b.setFocusPainted(false);
-			b.setBackground(Color.white);
+			b.setBackground(Color.gray);
+			
+			JButton btTitle = new JButton("Title:  겨울왕국");
+			btTitle.setBorderPainted(false);
+			btTitle.setContentAreaFilled(false);
+			btTitle.setFocusPainted(false);
+			btTitle.setOpaque(false);
+			btTitle.setBounds(470,150,200,30);
+			btTitle.setForeground(Color.white);
+			btTitle.setHorizontalAlignment(SwingConstants.LEFT);
+			btTitle.setFont(new Font("고딕", Font.BOLD, 18));
+			add(btTitle);
+			
+			JButton btGrade = new JButton("Grade:  4.1");
+			btGrade.setBorderPainted(false);
+			btGrade.setContentAreaFilled(false);
+			btGrade.setFocusPainted(false);
+			btGrade.setOpaque(false);
+			btGrade.setBounds(470,220,200,30);
+			btGrade.setForeground(Color.white);
+			btGrade.setHorizontalAlignment(SwingConstants.LEFT);
+			btGrade.setFont(new Font("고딕", Font.BOLD, 18));
+			add(btGrade);
+			
+			JButton bt1 = new JButton("줄거리");
+			 ActionListener handler = new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if (e.getActionCommand().equals("줄거리")) {
+						 JOptionPane.showMessageDialog(null, "어쩌구저쩌ㅜ구", "About 줄거리", JOptionPane.INFORMATION_MESSAGE);
+					}
+					
+				}
+				 
+			 };
+			bt1.addActionListener(handler);
+			bt1.setBackground(Color.WHITE);
+			bt1.setBounds(470,300, 100, 30);
+			add(bt1);
+			
 			b.addItemListener(new ItemListener() {
 				@Override
 				public void itemStateChanged(ItemEvent ev) {
@@ -256,9 +298,9 @@ class JPanel033 extends JPanel {
 			});
 
 			JLabel label = new JLabel("텍스트를 입력하시오.");
-			JTextArea txt = new JTextArea();
-			add(txt, BorderLayout.CENTER);
-			add(b, BorderLayout.WEST);
+			//JTextArea txt = new JTextArea();
+			//add(txt, BorderLayout.CENTER);
+			add(b);
 
 			//
 		} else {
@@ -278,7 +320,7 @@ class JPanel033 extends JPanel {
 			b.setVerticalTextPosition(SwingConstants.BOTTOM);
 			b.setBorderPainted(false);
 			b.setFocusPainted(false);
-			b.setBackground(Color.white);
+			b.setBackground(Color.darkGray);
 
 			b.addItemListener(new ItemListener() {
 				@Override
@@ -487,6 +529,7 @@ public class MainGUI extends JFrame {
 	public JPanel044 jpanel04 = null;
 	final static int GUI_WIDTH = 900;
 	final static int GUI_HEIGHT = 650;
+	
 
 	public MainGUI() {
 		init();
@@ -500,12 +543,24 @@ public class MainGUI extends JFrame {
 		jpanel03 = new JPanel033();
 		jpanel04 = new JPanel044();
 
+		jpanel03.setBackground(Color.darkGray);
 		JTabbedPane jtab = new JTabbedPane(); // JTabbedPane 객체 생성
 		jtab.setTabPlacement(JTabbedPane.TOP);
 		jtab.addTab("Contents", jpanel01);
 		jtab.addTab("Search/Sorting", jpanel02);
 		jtab.addTab("Recommend", jpanel03);
 		jtab.addTab("Review", jpanel04);
+		
+		JScrollPane scroll = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scroll.setViewportView(jpanel01);
+		
+		// Scroll pane smaller then the size of the canvas so we should get scroll bars right?
+		//scroll.setMinimumSize(new Dimension(500,50)); 
+
+		// Add a border to 'canvas'
+		//jpanel01.setBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+		jtab.add("Contents", scroll);
 
 		Dimension dim = new Dimension(430, 400);
 		setResizable(false);
